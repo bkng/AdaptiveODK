@@ -24,6 +24,7 @@ return Backbone.View.extend({
         "click .odk-next-btn": "gotoNextScreen",
         "click .odk-prev-btn": "gotoPreviousScreen",
         "click .odk-options-btn": "openOptions",
+		"click .odk-menu-btn": "gotoMenuScreen",
         "click .languageMenu": "openLanguagePopup",
         "click .language": "setLanguage",
         "click .ignore-changes-and-exit": "ignoreChanges",
@@ -254,6 +255,9 @@ return Backbone.View.extend({
     },
     openOptions: function(evt) {
         $( "#optionsPopup" ).popup( "open" );
+    },
+	gotoMenuScreen: function(evt) {
+        alert("Wait, where's the menu?");
     },
     openLanguagePopup: function(evt) {
         $( "#optionsPopup" ).popup( "close" );
