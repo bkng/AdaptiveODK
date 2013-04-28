@@ -1,0 +1,15 @@
+	<form>
+		{{> labelHint}}
+				<div class="ui-grid-b">
+				{{#each choices}}
+					<button
+							{{! the name attribue has to be the same for all the options}}
+							name="{{../name}}"
+							id="{{name}}"
+							>
+						{{name}}
+					 </button>
+				{{/each}}
+				</div><!-- /grid-b -->
+	</form>
+		<div style="clear:both;"></div>
