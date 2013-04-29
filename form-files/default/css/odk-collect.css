@@ -34,6 +34,9 @@ body {
 .odk-options-btn {
     float: left;
 }
+.odk-menu-btn {
+    float: left;
+}
 /*
 Orangy glow.
 Eventually we should make a jqm theme for this.
