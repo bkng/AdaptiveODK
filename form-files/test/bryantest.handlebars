@@ -1,15 +1,19 @@
 	<form>
 		{{> labelHint}}
-				<div class="ui-grid-b">
+				<div class="menu">
+					<div class="menu-title">Menu test</div>
 				{{#each choices}}
-					<button
-							{{! the name attribue has to be the same for all the options}}
-							name="{{../name}}"
-							id="{{name}}"
-							>
-						{{name}}
-					 </button>
+					<div class="menu-button">
+						<div class="menu-left">
+							<span class="menu-text">{{name}}</span>
+							<span class="menu-subtext">subtext</span>
+						</div>
+						<div class="menu-right">
+							<span class="menu-text">{{name}}</span>
+							<span class="menu-subtext">subtext</span>
+						</div>
+					 </div>
 				{{/each}}
-				</div><!-- /grid-b -->
+				</div><!-- /menu-grid -->
 	</form>
 		<div style="clear:both;"></div>

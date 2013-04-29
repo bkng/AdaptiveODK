@@ -1,12 +1,40 @@
+.menu{
+	width: 100%;
+}
+.menu-title{
+	width: 100%;
+	font-weight: bold;
+	font-size: 2em;
+	border-bottom: 2px solid black;	
+}
 .menu-button{
-	text-align: center;
-	color: red;
+	padding: 5px;
+	background-color: #FAFAFA;
+	height: 80px;
+	border-bottom: 1px solid #ABABAB;
 }
 
-.grid-select-item{
-	height: inherit;
+.menu-button:hover{
+	background-color: #CBCBCB;
 }
 
-form{
-	color:red;
+.menu-right{
+	float: right;
+	margin: 25px 10px 10px 10px;
 }
+.menu-left{
+	float: left;
+	margin: 15px 10px 10px 10px;
+}
+
+.menu-left .menu-text{
+	display: block;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.menu-subtext{
+	display: block;
+	font-style: italic;
+}
+

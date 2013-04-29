@@ -7,7 +7,7 @@ function(promptTypes, $,       _) {
 				autoAdvance: true,
 				templatePath: "../test/bryantest.handlebars",
 				events: {
-					"click button" : "clicked"	
+					"click .menu-button" : "clicked"	
 				},
 				clicked: function(evt){
 					//TODO a quick hack, make this more robust
