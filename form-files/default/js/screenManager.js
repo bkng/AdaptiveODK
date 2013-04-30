@@ -266,20 +266,6 @@ return Backbone.View.extend({
         evt.stopPropagation();
         evt.stopImmediatePropagation();
 		
-		/*
-        if (that.swipeTimeStamp == evt.timeStamp) {
-            ctxt.append('screenManager.gotoMenuScreen.duplicateEvent');
-            ctxt.success();
-            return false;
-        } else if(!that.swipeEnabled) {
-            ctxt.append('screenManager.gotoMenuScreen.ignoreDisabled');
-            ctxt.success();
-            return false;
-        }
-        that.swipeTimeStamp = evt.timeStamp;
-        that.swipeEnabled = false;
-		*/
-		
         that.controller.gotoRef($.extend({},ctxt,{
 						success:function(){
 							ctxt.failure({message: "Returning to start of form."});
