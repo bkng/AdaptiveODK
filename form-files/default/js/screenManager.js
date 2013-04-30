@@ -260,22 +260,27 @@ return Backbone.View.extend({
         this.currentPageEl.css('opacity', '.5').fadeTo("fast", 1.0);
 		
         var that = this;
-        var ctxt = that.controller.newContext(evt);
-        ctxt.append('screenManager.gotoNextScreen', ((that.prompt != null) ? ("px: " + that.prompt.promptIdx) : "no current prompt"));
+        var ctxt = that.controller.newContext(evt);		
+		
+        ctxt.append('screenManager.gotoMenuScreen', ((that.prompt != null) ? ("px: " + that.prompt.promptIdx) : "no current prompt"));
         evt.stopPropagation();
         evt.stopImmediatePropagation();
+		
+		/*
         if (that.swipeTimeStamp == evt.timeStamp) {
-            ctxt.append('screenManager.gotoNextScreen.duplicateEvent');
+            ctxt.append('screenManager.gotoMenuScreen.duplicateEvent');
             ctxt.success();
             return false;
         } else if(!that.swipeEnabled) {
-            ctxt.append('screenManager.gotoNextScreen.ignoreDisabled');
+            ctxt.append('screenManager.gotoMenuScreen.ignoreDisabled');
             ctxt.success();
             return false;
         }
         that.swipeTimeStamp = evt.timeStamp;
         that.swipeEnabled = false;
-        that.gotoRef($.extend({},ctxt,{
+		*/
+		
+        that.controller.gotoRef($.extend({},ctxt,{
 						success:function(){
 							ctxt.failure({message: "Returning to start of form."});
 						}}),"0");
