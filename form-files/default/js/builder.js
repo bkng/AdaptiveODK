@@ -50,6 +50,7 @@ function(controller,   opendatakit,   database,   $,        promptTypes,   formu
         var myFormula = formula(content);
         return function(context){
             if(context){
+                console.log("Calling formula with context");
                 return myFormula.call(this, context);
             } else {
                 console.error('builder.formula_with_context: formula: ' + myFormula.toString(2) + ' is missing a context argument');
@@ -59,6 +60,23 @@ function(controller,   opendatakit,   database,   $,        promptTypes,   formu
             }
         };
     }
+
+    function custom(content){
+      //var context_trimmed = content.replace("/^\s\s*/", '').replace("/\s\s*$/", '');
+      /*
+      return function(context){
+        if(content.match("^{{") && content.match("}}$")){
+            content = content.substring(2, content.length - 2));
+            return content;
+        }
+      }*/
+      return function(context){
+        console.log(formulaFunctions.calculates.calculate_1);
+        console.log(formulaFunctions.calculates);
+        return "this is really great test";
+      }
+    }
+
     var currentPromptTypes;
     var calculates = {};
     //column_types maps each column to a property parser to use on its values.
@@ -68,6 +86,7 @@ function(controller,   opendatakit,   database,   $,        promptTypes,   formu
         required: 'formula',
         validate: 'formula_with_context', // expects calling context arg.
         calculation: 'formula',
+  	    display_title: 'formula',
         'default': 'formula',
         assign: 'formula',
         //TODO: Choice filter has some syntax issues to consider.
@@ -86,6 +105,7 @@ function(controller,   opendatakit,   database,   $,        promptTypes,   formu
     //formula strings into JS functions.
     var propertyParsers = {
         formula: formula,
+        custom: custom,
         formula_with_context: formula_with_context,
         requirejs_path : function(content) {
             return opendatakit.getCurrentFormPath() + content;
