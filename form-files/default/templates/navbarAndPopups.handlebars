@@ -3,7 +3,7 @@
         <div class="odk-header" data-role="header" data-theme="c" data-position="fixed">
             <div class="headerOptBtns">
 				<a class="odk-options-btn" data-role="button"
-				data-icon="gear" data-iconpos="left" data-inline="true">survey</a>
+				data-icon="gear" data-iconpos="notext" data-inline="true">survey</a>
 				<a class="odk-menu-btn" data-role="button"
 				data-icon="grid" data-iconpos="left" data-inline="true">menu</a>
 			</div>
@@ -16,6 +16,16 @@
                 data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="true">next</a>
                 
            </div>
+        </div>
+    {{/if}}
+	{{#if showHeader}}
+        <div class="odk-subheader" data-role="content" data-theme="c" data-position="float">
+            <div class="subHeaderTxt">
+				<a class="odk-section-txt">
+				[section 1]</a>
+				<a class="odk-version-txt">
+				Community Version</a>
+			</div>
         </div>
     {{/if}}
     <div data-role="content" class="odk-scroll odk-container">
