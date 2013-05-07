@@ -1,75 +1,118 @@
 {
   "survey": [
     {
-      "type": "bryantest",
-      "name": "tests",
-      "_rowNum": 2,
-      "param": "tests"
+      "type": "text",
+      "name": "patient_name",
+      "label": "Enter the patient's name?",
+      "_rowNum": 2
     },
     {
-      "type": "select_multiple",
-      "name": "tests2",
+      "type": "menu",
+      "name": "menu",
+      "display_title": "'hello'",
+      "testtest" : "new column",
       "_rowNum": 3,
-      "param": "tests2"
+      "param": "menu_options"
+    },
+    {
+      "type": "select_one",
+      "name": "concious",
+      "label": "Is the child concious?",
+      "_rowNum": 4,
+      "param": "yesno"
+    },
+    {
+      "type": "select_one",
+      "name": "iritable",
+      "label": "Is the child iritable?",
+      "_rowNum": 5,
+      "param": "yesno"
+    },
+    {
+      "type": "select_one",
+      "name": "coughing",
+      "label": "Is the child coughing?",
+      "_rowNum": 6,
+      "param": "yesno"
+    },
+    {
+      "type": "select_one",
+      "name": "fever",
+      "label": "Does the child have a fever?",
+      "_rowNum": 7,
+      "param": "yesno"
     }
   ],
-  "prompt_types": [
+  "calculates": [
     {
-      "name": "bryantest",
-      "schema": {
-        "type": "integer"
-      },
+      "name": "concious",
+      "calculation": "selected(data('concious'),'yes')",
       "_rowNum": 2
+    },
+    {
+      "name": "patient_name",
+      "calculation": "data('patient_name')",
+      "_rowNum": 3
+    },
+    {
+      "name": "iritable",
+      "calculation": "selected(data('iritable'),'yes')",
+      "_rowNum": 4
     }
   ],
   "choices": {
-    "tests": [
+    "yesno": [
       {
-        "list_name": "tests",
-        "name": "red",
-        "label": "red",
+        "list_name": "yesno",
+        "name": "yes",
+        "label": "Yes",
         "_rowNum": 2
       },
       {
-        "list_name": "tests",
-        "name": "green",
-        "label": "green",
+        "list_name": "yesno",
+        "name": "no",
+        "label": "No",
         "_rowNum": 3
-      },
-      {
-        "list_name": "tests",
-        "name": "blue",
-        "label": "blue",
-        "_rowNum": 4
       }
     ],
-    "tests2": [
+    "menu_options": [
       {
-        "list_name": "tests2",
-        "name": "one",
-        "label": "one",
+        "list_name": "menu_options",
+        "name": "general",
+        "label": "General Symptoms",
+        "subtext": "TODO",
+        "r_label": "TODO",
+        "r_subtext": "TODO",
+        "r_label_style": "TODO",
+        "r_subtext_style": "TODO",
+        "_rowNum": 4
+      },
+      {
+        "list_name": "menu_options",
+        "label": "Respitory Symptoms",
+        "subtext": "TODO",
+        "r_label": "TODO",
+        "r_subtext": "TODO",
+        "r_label_style": "TODO",
+        "r_subtext_style": "TODO",
         "_rowNum": 5
       },
       {
-        "list_name": "tests2",
-        "name": "two",
-        "label": "two",
+        "list_name": "menu_options",
+        "label": "Malaria Symptoms",
+        "subtext": "TODO",
+        "r_label": "TODO",
+        "r_subtext": "TODO",
+        "r_label_style": "TODO",
+        "r_subtext_style": "TODO",
         "_rowNum": 6
-      }
-    ],
-    "tests3": [
-      {
-        "list_name": "tests3",
-        "name": "three",
-        "label": "three",
-        "_rowNum": 7
       }
     ]
   },
   "settings": [
     {
       "setting": "form_id",
-      "value": "exampleForm",
+      "value": "bryanTest",
       "_rowNum": 2
     },
     {
@@ -84,15 +127,20 @@
     }
   ],
   "model": {
-    "tests": {
-      "type": "integer"
+    "patient_name": {
+      "type": "string"
     },
-    "tests2": {
-      "type": "array",
-      "isPersisted": true,
-      "items": {
-        "type": "string"
-      }
+    "concious": {
+      "type": "string"
+    },
+    "iritable": {
+      "type": "string"
+    },
+    "coughing": {
+      "type": "string"
+    },
+    "fever": {
+      "type": "string"
     }
   }
 }

@@ -139,6 +139,7 @@ promptTypes.base = Backbone.View.extend({
             that.$el.empty();
             that.$el.append($virtualEl.children());
             that.$el.trigger('create');
+						that.afterRender();
         }
         try {
             $virtualEl.html(this.template(this.renderContext));
@@ -165,7 +166,6 @@ promptTypes.base = Backbone.View.extend({
                 numImagesLoaded = $imagesToLoad.length + 1;
             }
         },1000);
-        this.afterRender();
         return this;
     },
     /**

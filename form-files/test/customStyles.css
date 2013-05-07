@@ -1,3 +1,6 @@
+/**
+ * TODO make the sizes relative
+ **/
 .menu{
 	width: 100%;
 }
@@ -21,6 +24,7 @@
 .menu-right{
 	float: right;
 	margin: 25px 10px 10px 10px;
+	text-align: right;
 }
 .menu-left{
 	float: left;
@@ -38,3 +42,14 @@
 	font-style: italic;
 }
 
+.danger{
+	color: red;
+}
+
+.warning{
+	color: blue;
+}
+
+.good{
+	color: green;
+}

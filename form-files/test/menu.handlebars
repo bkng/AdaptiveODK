@@ -1,0 +1,19 @@
+	<form>
+		{{> labelHint}}
+				<div class="menu">
+					<div class="menu-title">{{testtest}}</div>
+				{{#each choices}}
+					<div class="menu-button">
+						<div class="menu-left">
+							<span class="menu-text">{{label}}</span>
+							<span class="menu-subtext">{{subtext}}</span>
+						</div>
+						<div class="menu-right">
+							<span class="menu-text {{r_label_style}}">{{r_label}}</span>
+							<span class="menu-subtext {{r_subtext_style}}">{{r_subtext}}</span>
+						</div>
+					 </div>
+				{{/each}}
+				</div><!-- /menu-grid -->
+	</form>
+		<div style="clear:both;"></div>
