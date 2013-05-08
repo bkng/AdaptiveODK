@@ -93,7 +93,7 @@ return Backbone.View.extend({
         var locales = that.controller.getFormLocales();
 		var headerLabel;
 		if (prompt != null) {
-			headerLabel = prompt.renderContext.name;
+			headerLabel = prompt.renderContext.section;
 		}
         that.renderContext = {
             form_title: opendatakit.getSettingValue('form_title'),
