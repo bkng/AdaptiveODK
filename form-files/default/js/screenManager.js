@@ -275,7 +275,7 @@ return Backbone.View.extend({
         that.controller.gotoRef($.extend({},ctxt,{
 						success:function(){
 							ctxt.failure({message: "Returning to start of form."});
-						}}),"0");
+						}}),"7"); // TODO: make menu selection dynamic
         return false;
     },
     openLanguagePopup: function(evt) {
