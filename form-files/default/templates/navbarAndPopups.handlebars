@@ -5,7 +5,7 @@
 				<a class="odk-options-btn" data-role="button"
 				data-icon="gear" data-iconpos="notext" data-inline="true">survey</a>
 				<a class="odk-menu-btn" data-role="button"
-				data-icon="grid" data-iconpos="left" data-inline="true">menu</a>
+				data-icon="grid" data-iconpos="left" data-inline="true">summary</a>
 			</div>
             <div class="headerNavBtns">
                 <a class="odk-prev-btn
@@ -22,7 +22,12 @@
         <div class="odk-subheader" data-role="content" data-theme="c" data-position="float">
             <div class="subHeaderTxt">
 				<a class="odk-section-txt">
-				{{label}}</a>
+					{{#if name}}
+						{{name}}
+					{{else}}
+						[no label found]
+					{{/if}}
+				</a>
 				<a class="odk-version-txt">
 				Community Version</a>
 			</div>
