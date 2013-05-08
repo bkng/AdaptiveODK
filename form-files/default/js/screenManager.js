@@ -102,6 +102,7 @@ return Backbone.View.extend({
             hasTranslations: (locales.length > 1),
             showHeader: true,
             showFooter: false,
+			showSubHeader: true,
             enableForwardNavigation: true,
             enableBackNavigation: true,
             enableNavigation: true,
