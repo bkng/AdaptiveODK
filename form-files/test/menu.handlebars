@@ -1,12 +1,12 @@
 	<form>
 		{{> labelHint}}
 				<div class="menu">
-					<div class="menu-title">{{testtest}}</div>
+					<div class="menu-title">Patient Name: {{title}}</div>
 				{{#each choices}}
 					<div class="menu-button">
 						<div class="menu-left">
 							<span class="menu-text">{{label}}</span>
-							<span class="menu-subtext">{{subtext}}</span>
+							<span class="menu-subtext">{{display_subtext}}</span>
 						</div>
 						<div class="menu-right">
 							<span class="menu-text {{r_label_style}}">{{r_label}}</span>

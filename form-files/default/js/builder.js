@@ -62,18 +62,9 @@ function(controller,   opendatakit,   database,   $,        promptTypes,   formu
     }
 
     function custom(content){
-      //var context_trimmed = content.replace("/^\s\s*/", '').replace("/\s\s*$/", '');
-      /*
       return function(context){
-        if(content.match("^{{") && content.match("}}$")){
-            content = content.substring(2, content.length - 2));
-            return content;
-        }
-      }*/
-      return function(context){
-        console.log(formulaFunctions.calculates.calculate_1);
-        console.log(formulaFunctions.calculates);
-        return "this is really great test";
+       	alert("TEST");
+			 	return "this is really great test";
       }
     }
 
@@ -87,6 +78,7 @@ function(controller,   opendatakit,   database,   $,        promptTypes,   formu
         validate: 'formula_with_context', // expects calling context arg.
         calculation: 'formula',
   	    display_title: 'formula',
+				display_subtext: 'custom',
         'default': 'formula',
         assign: 'formula',
         //TODO: Choice filter has some syntax issues to consider.

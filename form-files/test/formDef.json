@@ -9,8 +9,7 @@
     {
       "type": "menu",
       "name": "menu",
-      "display_title": "'hello'",
-      "testtest" : "new column",
+      "display_title": "calculates.get_patient_name()",
       "_rowNum": 3,
       "param": "menu_options"
     },
@@ -45,18 +44,23 @@
   ],
   "calculates": [
     {
-      "name": "concious",
+      "name": "is_concious",
       "calculation": "selected(data('concious'),'yes')",
       "_rowNum": 2
     },
     {
-      "name": "patient_name",
+      "name": "get_patient_name",
       "calculation": "data('patient_name')",
       "_rowNum": 3
     },
     {
-      "name": "iritable",
+      "name": "is_iritable",
       "calculation": "selected(data('iritable'),'yes')",
+      "_rowNum": 4
+    },
+    {
+      "name": "get_general_symtoms_label",
+      "calculation": "(calculates.is_iritable() || !calculate.is_concious())? 'Danger' : 'Ok'",
       "_rowNum": 4
     }
   ],
@@ -80,7 +84,7 @@
         "list_name": "menu_options",
         "name": "general",
         "label": "General Symptoms",
-        "subtext": "TODO",
+        "display_subtext": "{{calculates.get_patient_name()}}",
         "r_label": "TODO",
         "r_subtext": "TODO",
         "r_label_style": "TODO",
@@ -90,7 +94,7 @@
       {
         "list_name": "menu_options",
         "label": "Respitory Symptoms",
-        "subtext": "TODO",
+        "display_subtext": "TODO",
         "r_label": "TODO",
         "r_subtext": "TODO",
         "r_label_style": "TODO",
@@ -100,7 +104,7 @@
       {
         "list_name": "menu_options",
         "label": "Malaria Symptoms",
-        "subtext": "TODO",
+        "display_subtext": "TODO",
         "r_label": "TODO",
         "r_subtext": "TODO",
         "r_label_style": "TODO",
