@@ -1,51 +1,136 @@
 {
   "survey": [
     {
-      "type": "text",
-      "name": "patient_name",
-      "label": "Enter the patient's name?",
-      "_rowNum": 2
+      "type": "screen",
+      "_rowNum": 2,
+      "prompts": [
+        {
+          "type": "text",
+          "name": "patient_name",
+          "label": "What is the child's name?",
+          "_rowNum": 3
+        },
+        {
+          "type": "text",
+          "name": "patient_age",
+          "label": "How old is the child? (months)",
+          "_rowNum": 4
+        },
+        {
+          "type": "text",
+          "name": "patient_weight",
+          "label": "How much does the child weigh? (kg)",
+          "_rowNum": 5
+        },
+        {
+          "type": "select_one",
+          "name": "initial_visit",
+          "label": "Initial visit?",
+          "_rowNum": 6,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "screen",
+      "_rowNum": 8,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "drink",
+          "label": "Is the child able to drink or breastfeed?",
+          "_rowNum": 9,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "vomit",
+          "label": "Does the child vomit everything?",
+          "_rowNum": 10,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "convulsions",
+          "label": "Has the child had convulsions?",
+          "_rowNum": 11,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "screen",
+      "_rowNum": 13,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "cough",
+          "label": "Does the child have a cough or have difficulty breathing?",
+          "_rowNum": 14,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea",
+          "label": "Does the child have diarrhea?",
+          "_rowNum": 15,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "measles",
+          "label": "Has the child had measles in the last three months?",
+          "_rowNum": 16,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "fever",
+          "label": "Does the child have a fever?",
+          "_rowNum": 17,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "screen",
+      "_rowNum": 19,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "ear_problem",
+          "label": "Does the child have an ear problem?",
+          "_rowNum": 20,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "ear_pain",
+          "label": "Is there an ear pain?",
+          "_rowNum": 21,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "ear_discharge",
+          "label": "Is there an ear discharge?",
+          "_rowNum": 22,
+          "param": "yesno"
+        }
+      ]
     },
     {
       "type": "menu",
       "name": "menu",
       "display_title": "calculates.get_patient_name()",
-      "_rowNum": 3,
+      "_rowNum": 24,
       "param": "menu_options"
-    },
-    {
-      "type": "select_one",
-      "name": "concious",
-      "label": "Is the child concious?",
-      "_rowNum": 4,
-      "param": "yesno"
-    },
-    {
-      "type": "select_one",
-      "name": "iritable",
-      "label": "Is the child iritable?",
-      "_rowNum": 5,
-      "param": "yesno"
-    },
-    {
-      "type": "select_one",
-      "name": "coughing",
-      "label": "Is the child coughing?",
-      "_rowNum": 6,
-      "param": "yesno"
-    },
-    {
-      "type": "select_one",
-      "name": "fever",
-      "label": "Does the child have a fever?",
-      "_rowNum": 7,
-      "param": "yesno"
     }
   ],
   "calculates": [
     {
-      "name": "is_concious",
-      "calculation": "selected(data('concious'),'yes')",
+      "name": "get_patient_age",
+      "calculation": "data('patient_age')",
       "_rowNum": 2
     },
     {
@@ -54,14 +139,109 @@
       "_rowNum": 3
     },
     {
-      "name": "is_iritable",
-      "calculation": "selected(data('iritable'),'yes')",
+      "name": "is_initial_visit",
+      "calculation": "selected(data('initial_visit'),'yes')",
       "_rowNum": 4
     },
     {
-      "name": "get_general_symtoms_label",
-      "calculation": "(calculates.is_iritable() || !calculate.is_concious())? 'Danger' : 'Ok'",
-      "_rowNum": 4
+      "name": "can_drink",
+      "calculation": "selected(data('drink'),'yes')",
+      "_rowNum": 5
+    },
+    {
+      "name": "is_vomiting",
+      "calculation": "selected(data('vomit'),'yes')",
+      "_rowNum": 6
+    },
+    {
+      "name": "has_convulsions",
+      "calculation": "selected(data('convulsions'),'yes')",
+      "_rowNum": 7
+    },
+    {
+      "name": "has_cough",
+      "calculation": "selected(data('cough'),'yes')",
+      "_rowNum": 8
+    },
+    {
+      "name": "has_diarrhea",
+      "calculation": "selected(data('diarrhea'),'yes')",
+      "_rowNum": 9
+    },
+    {
+      "name": "had_measles",
+      "calculation": "selected(data('measles'),'yes')",
+      "_rowNum": 10
+    },
+    {
+      "name": "has_fever",
+      "calculation": "selected(data('fever'),'yes')",
+      "_rowNum": 11
+    },
+    {
+      "name": "has_ear_problem",
+      "calculation": "selected(data('ear_problem'),'yes')",
+      "_rowNum": 12
+    },
+    {
+      "name": "has_ear_pain",
+      "calculation": "selected(data('ear_pain'),'yes')",
+      "_rowNum": 13
+    },
+    {
+      "name": "has_ear_discharge",
+      "calculation": "selected(data('ear_discharge'),'yes')",
+      "_rowNum": 14
+    },
+    {
+      "name": "general_danger_level",
+      "calculation": "!calculates.can_drink() || calculates.is_vomiting() ||calculates.has_convulsions() ? \"Present\" : \"Not present\"",
+      "_rowNum": 15
+    },
+    {
+      "name": "pneumonia_danger_level",
+      "calculation": "calculates.has_cough()? \"Present\" : \"Not present\"",
+      "_rowNum": 16
+    },
+    {
+      "name": "diarrhea_danger_level",
+      "calculation": "calculates.has_diarrhea()? \"Present\" : \"Not present\"",
+      "_rowNum": 17
+    },
+    {
+      "name": "malaria_measles_danger_level",
+      "calculation": "calculates.has_fever()? \"Present\" : \"Not present\"",
+      "_rowNum": 18
+    },
+    {
+      "name": "ear_danger_level",
+      "calculation": "calculates .has_ear_problem() || calculates.has_ear_pain() || calculates.has_ear_discharge()? \"Present\" : \"Not Present\"",
+      "_rowNum": 19
+    },
+    {
+      "name": "danger_class_general",
+      "calculation": "calculates.general_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 20
+    },
+    {
+      "name": "danger_class_pneumonia",
+      "calculation": "calculates.pneumonia_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 21
+    },
+    {
+      "name": "danger_class_diarrhea",
+      "calculation": "calculates.diarrhea_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 22
+    },
+    {
+      "name": "danger_class_malaria_measles",
+      "calculation": "calculates.malaria_measles_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 23
+    },
+    {
+      "name": "danger_class_ear",
+      "calculation": "calculates.ear_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 24
     }
   ],
   "choices": {
@@ -82,34 +262,48 @@
     "menu_options": [
       {
         "list_name": "menu_options",
-        "name": "general",
+        "name": "general_option",
         "label": "General Symptoms",
-        "display_subtext": "{{calculates.get_patient_name()}}",
-        "r_label": "TODO",
-        "r_subtext": "TODO",
-        "r_label_style": "TODO",
-        "r_subtext_style": "TODO",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.general_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_general()}}",
         "_rowNum": 4
       },
       {
         "list_name": "menu_options",
-        "label": "Respitory Symptoms",
-        "display_subtext": "TODO",
-        "r_label": "TODO",
-        "r_subtext": "TODO",
-        "r_label_style": "TODO",
-        "r_subtext_style": "TODO",
+        "name": "pneumonia_option",
+        "label": "Pneumonia Symptoms",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.pneumonia_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_pneumonia()}}",
         "_rowNum": 5
       },
       {
         "list_name": "menu_options",
-        "label": "Malaria Symptoms",
-        "display_subtext": "TODO",
-        "r_label": "TODO",
-        "r_subtext": "TODO",
-        "r_label_style": "TODO",
-        "r_subtext_style": "TODO",
+        "name": "diarrhea_option",
+        "label": "Diarrhea Symptoms",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.diarrhea_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_diarrhea()}}",
         "_rowNum": 6
+      },
+      {
+        "list_name": "menu_options",
+        "name": "malaria_measles_option",
+        "label": "Malaria and Measles",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.malaria_measles_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_malaria_measles()}}",
+        "_rowNum": 7
+      },
+      {
+        "list_name": "menu_options",
+        "name": "ear_option",
+        "label": "Ear Problems",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.ear_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_ear()}}",
+        "_rowNum": 8
       }
     ]
   },
@@ -134,16 +328,43 @@
     "patient_name": {
       "type": "string"
     },
-    "concious": {
+    "patient_age": {
       "type": "string"
     },
-    "iritable": {
+    "patient_weight": {
       "type": "string"
     },
-    "coughing": {
+    "initial_visit": {
+      "type": "string"
+    },
+    "drink": {
+      "type": "string"
+    },
+    "vomit": {
+      "type": "string"
+    },
+    "convulsions": {
+      "type": "string"
+    },
+    "cough": {
+      "type": "string"
+    },
+    "diarrhea": {
+      "type": "string"
+    },
+    "measles": {
       "type": "string"
     },
     "fever": {
+      "type": "string"
+    },
+    "ear_problem": {
+      "type": "string"
+    },
+    "ear_pain": {
+      "type": "string"
+    },
+    "ear_discharge": {
       "type": "string"
     }
   }
