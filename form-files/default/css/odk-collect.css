@@ -37,6 +37,15 @@ body {
 .odk-menu-btn {
     float: left;
 }
+
+.odk-version-txt {
+    float: right;
+}
+
+.odk-section-txt {
+    float: left;
+}
+
 /*
 Orangy glow.
 Eventually we should make a jqm theme for this.

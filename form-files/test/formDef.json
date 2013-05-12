@@ -3,6 +3,7 @@
     {
       "type": "screen",
       "_rowNum": 2,
+	  "section": "Demographics",
       "prompts": [
         {
           "type": "text",
@@ -34,6 +35,7 @@
     {
       "type": "screen",
       "_rowNum": 8,
+	   "section": "Danger Signs",
       "prompts": [
         {
           "type": "select_one",
@@ -61,6 +63,7 @@
     {
       "type": "screen",
       "_rowNum": 13,
+	   "section": "General Info",
       "prompts": [
         {
           "type": "select_one",
@@ -95,6 +98,7 @@
     {
       "type": "screen",
       "_rowNum": 19,
+	  "section": "Ear Problems",
       "prompts": [
         {
           "type": "select_one",
@@ -122,6 +126,7 @@
     {
       "type": "menu",
       "name": "menu",
+	  "section": "Summary",
       "display_title": "calculates.get_patient_name()",
       "_rowNum": 24,
       "param": "menu_options"

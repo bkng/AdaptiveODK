@@ -91,6 +91,10 @@ return Backbone.View.extend({
         }
         var that = this;
         var locales = that.controller.getFormLocales();
+		var headerLabel;
+		if (prompt != null) {
+			headerLabel = prompt.renderContext.section;
+		}
         that.renderContext = {
             form_title: opendatakit.getSettingValue('form_title'),
             instanceName: prompt.database.getInstanceMetaDataValue('instanceName'),
@@ -98,9 +102,11 @@ return Backbone.View.extend({
             hasTranslations: (locales.length > 1),
             showHeader: true,
             showFooter: false,
+			showSubHeader: true,
             enableForwardNavigation: true,
             enableBackNavigation: true,
-            enableNavigation: true
+            enableNavigation: true,
+			name: headerLabel
             // enableNavigation -- defaults to true; false to disable everything...
             // enableForwardNavigation -- forward swipe and button
             // enableBackNavigation -- backward swipe and button
@@ -257,7 +263,20 @@ return Backbone.View.extend({
         $( "#optionsPopup" ).popup( "open" );
     },
 	gotoMenuScreen: function(evt) {
-        alert("Wait, where's the menu?");
+        this.currentPageEl.css('opacity', '.5').fadeTo("fast", 1.0);
+		
+        var that = this;
+        var ctxt = that.controller.newContext(evt);		
+		
+        ctxt.append('screenManager.gotoMenuScreen', ((that.prompt != null) ? ("px: " + that.prompt.promptIdx) : "no current prompt"));
+        evt.stopPropagation();
+        evt.stopImmediatePropagation();
+		
+        that.controller.gotoRef($.extend({},ctxt,{
+						success:function(){
+							ctxt.failure({message: "Returning to start of form."});
+						}}),"7"); // TODO: make menu selection dynamic
+        return false;
     },
     openLanguagePopup: function(evt) {
         $( "#optionsPopup" ).popup( "close" );

@@ -67,6 +67,7 @@ promptTypes.base = Backbone.View.extend({
         this.renderContext.required = this.required;
         this.renderContext.appearance = this.appearance;
         this.renderContext.withOther = this.withOther;
+		this.renderContext.section = this.section;
         //It's probably not good to get data like this in initialize
         //Maybe it would be better to use handlebars helpers to get metadata?
         this.renderContext.form_title = opendatakit.getSettingValue('form_title');
