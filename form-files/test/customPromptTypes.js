@@ -35,9 +35,18 @@ function(promptTypes, $, _, formulaFunctions) {
 					"click .menu-button" : "clicked"	
 				},
 				clicked: function(evt){
-					//TODO a quick hack, make this more robust
 					var ctxt = controller.newContext(evt);
-					controller.gotoNextScreen(ctxt);
+					var label = evt.currentTarget.lastElementChild.textContent;
+					var prompt = controller.getPromptByLabel( label );
+					controller.advanceToScreenPrompt($.extend({}, ctxt, {
+						success:function(prompt) {
+							if ( prompt == null ) {
+								ctxt.append('controller.gotoRef', "no prompt after advance");
+								ctxt.failure({message: "No next prompt."});
+								return;
+							}
+							controller.setPrompt(ctxt, prompt);
+						}}), prompt);
 				},
 				afterInitialize: function(ctxt){
 					this.renderContext.test = "TESTTEST";

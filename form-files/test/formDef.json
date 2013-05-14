@@ -1,6 +1,11 @@
 {
   "survey": [
     {
+      "type": "label",
+      "_rowNum": 1,
+      "param": "demographics"
+    },
+    {
       "type": "screen",
       "_rowNum": 2,
 	  "section": "Demographics",
@@ -32,10 +37,15 @@
         }
       ]
     },
+	{
+      "type": "label",
+      "_rowNum": 7,
+      "param": "general"
+    },
     {
       "type": "screen",
       "_rowNum": 8,
-	   "section": "Danger Signs",
+	   "section": "General Symptoms",
       "prompts": [
         {
           "type": "select_one",
@@ -60,10 +70,15 @@
         }
       ]
     },
+	{
+      "type": "label",
+      "_rowNum": 12,
+      "param": "pneumonia"
+    },
     {
       "type": "screen",
       "_rowNum": 13,
-	   "section": "General Info",
+	   "section": "Pneumonia Symptoms",
       "prompts": [
         {
           "type": "select_one",
@@ -94,6 +109,11 @@
           "param": "yesno"
         }
       ]
+    },
+	{
+      "type": "label",
+      "_rowNum": 18,
+      "param": "ear"
     },
     {
       "type": "screen",
@@ -269,6 +289,7 @@
         "list_name": "menu_options",
         "name": "general_option",
         "label": "General Symptoms",
+		"parent_label": "general",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.general_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_general()}}",
@@ -278,6 +299,7 @@
         "list_name": "menu_options",
         "name": "pneumonia_option",
         "label": "Pneumonia Symptoms",
+		"parent_label": "pneumonia",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.pneumonia_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_pneumonia()}}",
@@ -287,6 +309,7 @@
         "list_name": "menu_options",
         "name": "diarrhea_option",
         "label": "Diarrhea Symptoms",
+		"parent_label": "diarrhea",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.diarrhea_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_diarrhea()}}",
@@ -296,6 +319,7 @@
         "list_name": "menu_options",
         "name": "malaria_measles_option",
         "label": "Malaria and Measles",
+		"parent_label": "malaria_measles",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.malaria_measles_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_malaria_measles()}}",
@@ -305,6 +329,7 @@
         "list_name": "menu_options",
         "name": "ear_option",
         "label": "Ear Problems",
+		"parent_label": "ear",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.ear_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_ear()}}",
