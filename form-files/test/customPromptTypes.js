@@ -24,6 +24,7 @@ function(promptTypes, $, _, formulaFunctions) {
             // return function(){};
         }
     }
+
 		return {
 			"menu" : promptTypes.base.extend({	
 				type: "menu",
@@ -65,7 +66,7 @@ function(promptTypes, $, _, formulaFunctions) {
                 var processValue = function(text){
                   if (!($.type(text) == "string"))
                     return text;
-                  if(text.length < 3)
+                  if(text.length < 4)
                    text; 
                   if (text.substring(0,2) == "{{" && text.substring(text.length - 2, text.length) == "}}"){
                     return formula(text.substring(2,text.length -2))(); 
@@ -85,6 +86,11 @@ function(promptTypes, $, _, formulaFunctions) {
 							newctxt.failure({message: "Error fetching choices -- no ajax query or choices defined"});
 						}
 				}
-			})
+			}),
+      "segmented_button" : promptTypes.select_one.extend({
+				type: "segmented_button",
+				datatype: "string",
+				templatePath: "../test/segmented_button.handlebars",
+      })
 		};
 });

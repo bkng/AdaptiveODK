@@ -1,0 +1,26 @@
+{{#if passiveError}}
+    <div class="ui-bar ui-bar-a">
+        {{passiveError}}
+    </div>
+{{/if}}
+<form>
+    <div class="inline-label-container">
+        {{> labelHint}}
+    </div>
+    <fieldset
+    data-role="controlgroup"
+    data-type="horizontal"
+    style="float:right;margin-left:1em;display:block;"
+    {{#eachProperty inputAttributes}}
+        {{property}}="{{value}}"
+    {{/eachProperty}}
+    >
+    <div class="segmented-button">
+        {{#each choices}}
+          <input type="radio" name="{{../name}}" value="{{label}}" id="{{name}}">
+          <label for="{{name}}" value={{label}}>{{label}}</label>
+        {{/each}}
+    </div>
+    </fieldset>
+    <div style="clear:both;"></div>
+</form>
