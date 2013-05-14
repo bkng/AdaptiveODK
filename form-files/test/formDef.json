@@ -8,7 +8,7 @@
     {
       "type": "screen",
       "_rowNum": 2,
-	  "section": "Demographics",
+      "section": "Demographics",
       "prompts": [
         {
           "type": "text",
@@ -30,6 +30,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "initial_visit",
           "label": "Initial visit?",
           "_rowNum": 6,
@@ -37,7 +38,7 @@
         }
       ]
     },
-	{
+    {
       "type": "label",
       "_rowNum": 7,
       "param": "general"
@@ -45,10 +46,11 @@
     {
       "type": "screen",
       "_rowNum": 8,
-	   "section": "General Symptoms",
+       "section": "General Symptoms",
       "prompts": [
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "drink",
           "label": "Is the child able to drink or breastfeed?",
           "_rowNum": 9,
@@ -56,6 +58,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "vomit",
           "label": "Does the child vomit everything?",
           "_rowNum": 10,
@@ -63,6 +66,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "convulsions",
           "label": "Has the child had convulsions?",
           "_rowNum": 11,
@@ -70,7 +74,7 @@
         }
       ]
     },
-	{
+    {
       "type": "label",
       "_rowNum": 12,
       "param": "pneumonia"
@@ -78,10 +82,11 @@
     {
       "type": "screen",
       "_rowNum": 13,
-	   "section": "Pneumonia Symptoms",
+       "section": "Pneumonia Symptoms",
       "prompts": [
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "cough",
           "label": "Does the child have a cough or have difficulty breathing?",
           "_rowNum": 14,
@@ -89,6 +94,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "diarrhea",
           "label": "Does the child have diarrhea?",
           "_rowNum": 15,
@@ -96,6 +102,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "measles",
           "label": "Has the child had measles in the last three months?",
           "_rowNum": 16,
@@ -103,6 +110,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "fever",
           "label": "Does the child have a fever?",
           "_rowNum": 17,
@@ -110,7 +118,7 @@
         }
       ]
     },
-	{
+    {
       "type": "label",
       "_rowNum": 18,
       "param": "ear"
@@ -118,10 +126,11 @@
     {
       "type": "screen",
       "_rowNum": 19,
-	  "section": "Ear Problems",
+      "section": "Ear Problems",
       "prompts": [
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "ear_problem",
           "label": "Does the child have an ear problem?",
           "_rowNum": 20,
@@ -129,6 +138,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "ear_pain",
           "label": "Is there an ear pain?",
           "_rowNum": 21,
@@ -136,6 +146,7 @@
         },
         {
           "type": "select_one",
+          "appearance": "inline",
           "name": "ear_discharge",
           "label": "Is there an ear discharge?",
           "_rowNum": 22,
@@ -146,7 +157,7 @@
     {
       "type": "menu",
       "name": "menu",
-	  "section": "Summary",
+        "section": "Summary",
       "display_title": "calculates.get_patient_name()",
       "_rowNum": 24,
       "param": "menu_options"
@@ -289,7 +300,7 @@
         "list_name": "menu_options",
         "name": "general_option",
         "label": "General Symptoms",
-		"parent_label": "general",
+        "parent_label": "general",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.general_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_general()}}",
@@ -299,7 +310,7 @@
         "list_name": "menu_options",
         "name": "pneumonia_option",
         "label": "Pneumonia Symptoms",
-		"parent_label": "pneumonia",
+        "parent_label": "pneumonia",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.pneumonia_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_pneumonia()}}",
@@ -309,7 +320,7 @@
         "list_name": "menu_options",
         "name": "diarrhea_option",
         "label": "Diarrhea Symptoms",
-		"parent_label": "diarrhea",
+        "parent_label": "diarrhea",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.diarrhea_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_diarrhea()}}",
@@ -319,7 +330,7 @@
         "list_name": "menu_options",
         "name": "malaria_measles_option",
         "label": "Malaria and Measles",
-		"parent_label": "malaria_measles",
+        "parent_label": "malaria_measles",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.malaria_measles_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_malaria_measles()}}",
@@ -329,7 +340,7 @@
         "list_name": "menu_options",
         "name": "ear_option",
         "label": "Ear Problems",
-		"parent_label": "ear",
+        "parent_label": "ear",
         "display_subtext": "Click to view section",
         "display_r_label": "{{calculates.ear_danger_level()}}",
         "display_r_label_style": "{{calculates.danger_class_ear()}}",

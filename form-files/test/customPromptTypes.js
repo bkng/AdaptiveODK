@@ -1,29 +1,29 @@
 define(['promptTypes','jquery','underscore', 'formulaFunctions', 'prompts'],
 function(promptTypes, $, _, formulaFunctions) {
-    //TODO code copied from builder.js take out the not relevant things
-    function formula(content) {
-        var result = '(function(context){\n'+
-            'return ('+ content + ');\n' +
-            '})';
-        try {
-            var parsedFunction = formulaFunctions.evaluator(result);
-            return function(context){
-                try {
-                    return parsedFunction.call(this, context);
-                } catch (e) {
-                    console.error("builder.formula: " + result + " exception: " + String(e));
-                    alert("Could not call formula.\nSee console for details.");
-                    throw new Error("Exception in user formula.");
-                    // controller.fatalError();
-                }
-            };
-        } catch (e) {
-            console.error("builder.formula: " + result + " exception evaluating formula: " + String(e));
-            alert("Could not evaluate formula: " + result + '\nSee console for details.');
-            throw new Error("Could not evaluate formula: " + result + '\nSee console for details.');
-            // return function(){};
-        }
-    }
+		//TODO code copied from builder.js take out the not relevant things
+		function formula(content) {
+				var result = '(function(context){\n'+
+						'return ('+ content + ');\n' +
+						'})';
+				try {
+						var parsedFunction = formulaFunctions.evaluator(result);
+						return function(context){
+								try {
+										return parsedFunction.call(this, context);
+								} catch (e) {
+										console.error("builder.formula: " + result + " exception: " + String(e));
+										alert("Could not call formula.\nSee console for details.");
+										throw new Error("Exception in user formula.");
+										// controller.fatalError();
+								}
+						};
+				} catch (e) {
+						console.error("builder.formula: " + result + " exception evaluating formula: " + String(e));
+						alert("Could not evaluate formula: " + result + '\nSee console for details.');
+						throw new Error("Could not evaluate formula: " + result + '\nSee console for details.');
+						// return function(){};
+				}
+		}
 
 		return {
 			"menu" : promptTypes.base.extend({	
@@ -31,7 +31,7 @@ function(promptTypes, $, _, formulaFunctions) {
 				datatype: "menu",
 				autoAdvance: true,
 				templatePath: "../test/menu.handlebars",
-        formulaFunctions : formulaFunctions,
+				formulaFunctions : formulaFunctions,
 				events: {
 					"click .menu-button" : "clicked"	
 				},
@@ -71,35 +71,30 @@ function(promptTypes, $, _, formulaFunctions) {
 						} else if (that.param in that.form.choices) {
 								//Very important.
 								//We need to clone the choices so their values are unique to the prompt.
-                var calculates = that.formulaFunctions;
-                var processValue = function(text){
-                  if (!($.type(text) == "string"))
-                    return text;
-                  if(text.length < 4)
-                   text; 
-                  if (text.substring(0,2) == "{{" && text.substring(text.length - 2, text.length) == "}}"){
-                    return formula(text.substring(2,text.length -2))(); 
-                 }
-                  return text;
-                }
+								var calculates = that.formulaFunctions;
+								var processValue = function(text){
+									if (!($.type(text) == "string"))
+										return text;
+									if(text.length < 4)
+									 text; 
+									if (text.substring(0,2) == "{{" && text.substring(text.length - 2, text.length) == "}}"){
+										return formula(text.substring(2,text.length -2))(); 
+								 }
+									return text;
+								}
 								that.renderContext.choices = _.map(that.form.choices[that.param], _.clone);
-                //now loop through every field in the object and apply the processValue function
-                //alert(processValue("{{calculates.get_patient_name()}}"));
-                for(var key in that.renderContext.choices){
-                  for(var field in that.renderContext.choices[key]){
-                    that.renderContext.choices[key][field] = processValue(that.renderContext.choices[key][field]); 
-                  }
-                }
+								//now loop through every field in the object and apply the processValue function
+								//alert(processValue("{{calculates.get_patient_name()}}"));
+								for(var key in that.renderContext.choices){
+									for(var field in that.renderContext.choices[key]){
+										that.renderContext.choices[key][field] = processValue(that.renderContext.choices[key][field]); 
+									}
+								}
 								newctxt.success("choiceList.success");
 						} else {
 							newctxt.failure({message: "Error fetching choices -- no ajax query or choices defined"});
 						}
 				}
-			}),
-      "segmented_button" : promptTypes.select_one.extend({
-				type: "segmented_button",
-				datatype: "string",
-				templatePath: "../test/segmented_button.handlebars",
-      })
+			})
 		};
 });
