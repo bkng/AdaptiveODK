@@ -272,10 +272,11 @@ return Backbone.View.extend({
         evt.stopPropagation();
         evt.stopImmediatePropagation();
 		
-        that.controller.gotoRef($.extend({},ctxt,{
+		var prmpt = that.controller.getPromptByName( "menu" );
+        that.controller.setPrompt($.extend({},ctxt,{
 						success:function(){
 							ctxt.failure({message: "Returning to start of form."});
-						}}),"7"); // TODO: make menu selection dynamic
+						}}), prmpt, null);
         return false;
     },
     openLanguagePopup: function(evt) {
