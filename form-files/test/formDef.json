@@ -205,6 +205,12 @@
       "display_title": "calculates.get_patient_name()",
       "_rowNum": 29,
       "param": "menu_options"
+    },
+    {
+      "type": "generate_qr",
+      "name": "generate_qr_code",
+      "section": "Finish Survey",
+      "_rowNum": 25
     }
   ],
   "calculates": [

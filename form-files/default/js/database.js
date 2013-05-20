@@ -1164,6 +1164,24 @@ save_all_changes:function(ctxt, asComplete) {
             }
         );
 },
+get_database_state:function(ctxt,onSuccess){
+	//TODO test method
+	 alert("Getting the database state!");
+	 var that = this;	
+	 ctxt.append('save_all_changes');
+	 var tmpctxt = $.extend({}, ctxt, {success:function() {
+				  ctxt.success();
+			 }});
+	 that.withDb( tmpctxt, 
+			 function(transaction) {
+				  var is = that._selectAllFromDataTableStmt(mdl.tableMetadata.dbTableName, opendatakit.getCurrentInstanceId());
+				  tmpctxt.sqlStatement = is;
+				  transaction.executeSql(is.stmt, is.bind, function(transaction, result) {
+					 onSuccess(result);
+				  });
+			 }
+		);
+},
 ignore_all_changes:function(ctxt) {
       var that = this;
       ctxt.append('database.ignore_all_changes');

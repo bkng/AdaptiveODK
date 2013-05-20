@@ -95,6 +95,29 @@ function(promptTypes, $, _, formulaFunctions) {
 							newctxt.failure({message: "Error fetching choices -- no ajax query or choices defined"});
 						}
 				}
+			}),
+			"generate_qr":promptTypes.base.extend({
+					type:"finalize",
+					hideInHierarchy: true,
+					valid: true,
+					templatePath: "../test/generate_qr.handlebars",
+					events: {
+							"click .generate_qr": "generate_qr",
+					},
+					renderContext: {
+							headerImg: requirejs.toUrl('img/form_logo.png')
+					},
+					postActivate: function(ctxt) {
+							ctxt.success({enableForwardNavigation: false});
+					},
+					generate_qr: function(evt) {
+							var ctxt = controller.newContext(evt);
+							var keyVablye a
+							controller.getDatabaseState(ctxt,function(results){
+								alert("Prompt got the results");	
+							});
+							ctxt.append("prompts." + this.type + ".saveIncomplete", "px: " + this.promptIdx);
+					},
 			})
 		};
 });
