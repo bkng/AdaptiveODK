@@ -155,11 +155,55 @@
       ]
     },
     {
+      "type": "screen",
+      "_rowNum": 23,
+      "section": "Treatment",
+      "prompts": [
+   {
+      "type": "note",
+      "name": "Treatment Introduction",
+      "section": "Treatment",
+      "label": "We are sorry that your child is sick. Based on your answers, we recommend the following treatments:",
+      "_rowNum": 24
+   },
+   {
+      "type": "note",
+      "name": "Treat Now",
+      "section": "Treatment",
+      "label": "Immediate Action:",
+      "_rowNum": 25
+   },
+   {
+      "type": "select_multiple",
+      "name": "Immediate_action_list",
+      "section": "Treatment",
+      "_rowNum": 26,
+      "choice_filter": "context.danger == \"danger\"",
+      "param": "treat_now_options"
+    },
+   {
+      "type": "note",
+      "name": "References",
+      "section": "Treatment",
+      "label": "Follow-Up and Education:",
+      "_rowNum": 27
+   },
+    {
+      "type": "select_multiple",
+      "name": "follow up",
+      "section": "Treatment",
+       "_rowNum": 28,
+      "choice_filter": "context.danger == \"danger\"",
+      "param": "follow_up"
+    }
+      ]
+    },
+    {
       "type": "menu",
       "name": "menu",
         "section": "Summary",
       "display_title": "calculates.get_patient_name()",
-      "_rowNum": 24,
+      "_rowNum": 29,
       "param": "menu_options"
     }
   ],
@@ -294,7 +338,7 @@
         "label": "No",
         "_rowNum": 3
       }
-    ],
+],
     "menu_options": [
       {
         "list_name": "menu_options",
@@ -346,7 +390,66 @@
         "display_r_label_style": "{{calculates.danger_class_ear()}}",
         "_rowNum": 8
       }
-    ]
+    ],
+ "treat_now_options": [
+      {
+        "list_name": "treat_now_options",
+        "name": "go_to_dr",
+        "label": "Refer urgently to a clinic",
+        "danger": "{{calculates.danger_class_general()}}",
+        "_rowNum": 9
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "pneumonia_option",
+        "label": "Give antibiotics for pnemonia",
+        "danger": "{{calculates.danger_class_pneumonia()}}",
+        "display_subtext": "due to pnemonia",
+        "_rowNum": 10
+      },
+     {
+        "list_name": "treat_now_options",
+        "name": "diarrhea_option",
+        "label": "Give ORS",
+        "danger": "{{calculates.danger_class_diarrhea()}}",
+        "display_subtext": "due to diarrhea",
+	"_rowNum": 11
+      },
+     {
+        "list_name": "treat_now_options",
+        "name": "diarrhea_option",
+        "label": "Continue to Breast Feed",
+        "danger": "{{calculates.danger_class_diarrhea()}}",
+        "display_subtext": "due to diarrhea",
+	"_rowNum": 12
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_measles_option",
+        "label": "Give quinine",
+        "danger":  "{{calculates.danger_class_malaria_measles()}}",
+        "display_subtext": "due to malaria",
+        "_rowNum": 13
+      },
+     {
+        "list_name": "treat_now_options",
+        "name": "ear_option",
+        "label": "Give Paracetomol for pain and first dose of antibiotics",
+        "danger": "{{calculates.danger_class_ear()}}",
+        "display_subtext": "due to ear problems",
+        "_rowNum": 14
+      }
+    ],
+ "follow_up": [
+       {
+        "list_name": "follow_up",
+        "name": "malaria_measles_option",
+        "label": "Watch for stiff neck",
+        "danger":  "{{calculates.danger_class_malaria_measles()}}",
+        "parent_label": "general",
+	"_rowNum": 15
+     }
+  ]
   },
   "settings": [
     {

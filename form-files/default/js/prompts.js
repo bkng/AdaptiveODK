@@ -3,8 +3,32 @@
 /**
  * All  the standard prompts available to a form designer.
  */
-define(['mdl','database','opendatakit','controller','backbone','handlebars','promptTypes','jquery','underscore', 'translations', 'handlebarsHelpers'],
-function(mdl,  database,  opendatakit,  controller,  Backbone,  Handlebars,  promptTypes,  $,       _,            translations) {
+define(['mdl','database','opendatakit','controller','backbone','handlebars','promptTypes','jquery','underscore', 'translations', 'formulaFunctions', 'handlebarsHelpers\
+'],
+function(mdl,  database,  opendatakit,  controller,  Backbone,  Handlebars,  promptTypes,  $,       _,            translations, formulaFunctions) {
+    function formula(content) {
+        var result = '(function(context){\n'+
+            'return ('+ content + ');\n' +
+            '})';
+        try {
+            var parsedFunction = formulaFunctions.evaluator(result);
+            return function(context){
+                try {
+                    return parsedFunction.call(this, context);
+                } catch (e) {
+                    console.error("builder.formula: " + result + " exception: " + String(e));
+                    alert("Could not call formula.\nSee console for details.");
+                    throw new Error("Exception in user formula.");
+                    // controller.fatalError();
+                }
+            };
+        } catch (e) {
+            console.error("builder.formula: " + result + " exception evaluating formula: " + String(e));
+            alert("Could not evaluate formula: " + result + '\nSee console for details.');
+            throw new Error("Could not evaluate formula: " + result + '\nSee console for details.');
+            // return function(){};
+        }
+    }
 
 promptTypes.base = Backbone.View.extend({
     className: "current",
@@ -711,7 +735,27 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
         } else if (that.param in that.form.choices) {
             //Very important.
             //We need to clone the choices so their values are unique to the prompt.
+                var calculates = that.formulaFunctions;
+                var processValue = function(text){
+                  if (!($.type(text) == "string"))
+                    return text;
+                  if(text.length < 3)
+                   text;
+                  if (text.substring(0,2) == "{{" && text.substring(text.length - 2, text.length) == "}}"){
+                    return formula(text.substring(2,text.length -2))();
+                 }
+                  return text;
+                }
+
             that.renderContext.choices = _.map(that.form.choices[that.param], _.clone);
+                 //now loop through every field in the object and apply the processValue function
+                //alert(processValue("{{calculates.get_patient_name()}}"));
+                for(var key in that.renderContext.choices){
+                  for(var field in that.renderContext.choices[key]){
+                    that.renderContext.choices[key][field] = processValue(that.renderContext.choices[key][field]);
+                  }
+                }
+
             newctxt.success("choiceList.success");
         } else {
             newctxt.failure({message: "Error fetching choices -- no ajax query or choices defined"});
