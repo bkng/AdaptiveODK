@@ -129,6 +129,7 @@
           "type": "integer",
           "name": "cough_how_long",
           "label": "How long has the child had a cough? (days)",
+          "appearance": "inline",
           "_rowNum": 23
         },
         {
@@ -162,6 +163,7 @@
           "type": "integer",
           "name": "diarrhea_how_long",
           "label": "How long has the child had diarrhea? (days)",
+          "appearance": "inline",
           "_rowNum": 29
         },
         {
@@ -186,7 +188,7 @@
       "type": "label",
       "condition": "selected(data('measles'), 'yes') || selected(data('fever'), 'yes')",
       "_rowNum": 33,
-      "param": "measles_malaria"
+      "param": "malaria_measles"
     },
     {
       "type": "screen",
@@ -197,6 +199,7 @@
           "type": "integer",
           "name": "fever_how_long",
           "label": "How long has the child had a fever? (days)",
+          "appearance": "inline",
           "_rowNum": 35
         },
         {
