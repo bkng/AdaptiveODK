@@ -318,15 +318,15 @@ promptTypes.opening = promptTypes.base.extend({
             that.renderContext.instanceName = instanceName;
             database.setInstanceMetaData($.extend({}, ctxt, {
                 success: function() {
-                    ctxt.success({
-                        enableBackNavigation: false
+                    ctxt.success({						
+                        enableBackNavigation: false						
                     });
                 }
             }), 'instanceName', instanceName);
             return;
         }
         that.renderContext.instanceName = instanceName;
-        ctxt.success({enableBackNavigation: false});
+        ctxt.success({showSubHeader: false, enableBackNavigation: false});
     },
     renderContext: {
         headerImg: requirejs.toUrl('img/form_logo.png'),
@@ -433,6 +433,7 @@ promptTypes.instances = promptTypes.base.extend({
                 });
                 ctxt.success({
                     showHeader: false,
+					showSubHeader: false,
                     enableNavigation:false,
                     showFooter:false
                 });
@@ -477,7 +478,7 @@ promptTypes.hierarchy = promptTypes.base.extend({
     },
     postActivate: function(ctxt) {
         this.renderContext.prompts = controller.prompts;
-        ctxt.success({showHeader: true, showFooter: false});
+        ctxt.success({showHeader: true, showSubHeader: false, showFooter: false});
     }
 });
 promptTypes.repeat = promptTypes.base.extend({
@@ -498,6 +499,7 @@ promptTypes.repeat = promptTypes.base.extend({
                 that.renderContext.instances = instanceList;
                 ctxt.success({
                     showHeader: false,
+					showSubHeader: false,
                     enableNavigation:false,
                     showFooter:false
                 });

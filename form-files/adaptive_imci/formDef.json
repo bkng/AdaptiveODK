@@ -14,6 +14,7 @@
           "type": "text",
           "name": "patient_name",
           "label": "What is the child's name?",
+          "required": true,
           "_rowNum": 4
         },
         {
@@ -53,6 +54,7 @@
           "name": "drink",
           "label": "Is the child able to drink or breastfeed?",
           "appearance": "inline",
+          "required": true,
           "_rowNum": 11,
           "param": "yesno"
         },
@@ -61,6 +63,7 @@
           "name": "vomit",
           "label": "Does the child vomit everything?",
           "appearance": "inline",
+          "required": true,
           "_rowNum": 12,
           "param": "yesno"
         },
@@ -69,6 +72,7 @@
           "name": "convulsions",
           "label": "Has the child had convulsions?",
           "appearance": "inline",
+          "required": true,
           "_rowNum": 13,
           "param": "yesno"
         }
@@ -84,6 +88,7 @@
           "name": "cough",
           "label": "Does the child have a cough or have difficulty breathing?",
           "appearance": "inline",
+          "required": true,
           "_rowNum": 16,
           "param": "yesno"
         },
@@ -92,6 +97,7 @@
           "name": "diarrhea",
           "label": "Does the child have diarrhea?",
           "appearance": "inline",
+          "required": true,
           "_rowNum": 17,
           "param": "yesno"
         },
@@ -100,6 +106,7 @@
           "name": "measles",
           "label": "Has the child had measles in the last three months?",
           "appearance": "inline",
+          "required": true,
           "_rowNum": 18,
           "param": "yesno"
         },
@@ -108,6 +115,7 @@
           "name": "fever",
           "label": "Does the child have a fever?",
           "appearance": "inline",
+          "required": true,
           "_rowNum": 19,
           "param": "yesno"
         }
@@ -122,12 +130,11 @@
       "type": "screen",
       "section": "Pneumonia",
       "condition": "selected(data('cough'), 'yes')",
-      "name": "cough_positive",
       "_rowNum": 22,
       "prompts": [
         {
           "type": "integer",
-          "name": "cough_how_long",
+          "name": "cough_days",
           "label": "How long has the child had a cough? (days)",
           "appearance": "inline",
           "_rowNum": 23
@@ -140,7 +147,7 @@
         },
         {
           "type": "select_one",
-          "name": "breath_danger",
+          "name": "indraw_stridor_wheezing",
           "label": "Does thie child show chest indrawing, stridor, or wheezing?",
           "appearance": "inline",
           "_rowNum": 25,
@@ -150,18 +157,18 @@
     },
     {
       "type": "label",
-      "condition": "selected(data('diarrhea'), 'yes')",
       "_rowNum": 27,
       "param": "diarrhea"
     },
     {
       "type": "screen",
       "section": "Diarrhea",
+      "condition": "selected(data('diarrhea'), 'yes')",
       "_rowNum": 28,
       "prompts": [
         {
           "type": "integer",
-          "name": "diarrhea_how_long",
+          "name": "diarrhea_days",
           "label": "How long has the child had diarrhea? (days)",
           "appearance": "inline",
           "_rowNum": 29
@@ -186,25 +193,24 @@
     },
     {
       "type": "label",
-      "condition": "selected(data('measles'), 'yes') || selected(data('fever'), 'yes')",
       "_rowNum": 33,
       "param": "malaria_measles"
     },
     {
       "type": "screen",
       "section": "Measles & Malaria",
+      "condition": "selected(data('measles'), 'yes') || selected(data('fever'), 'yes')",
       "_rowNum": 34,
       "prompts": [
         {
           "type": "integer",
-          "name": "fever_how_long",
+          "name": "fever_days",
           "label": "How long has the child had a fever? (days)",
           "appearance": "inline",
           "_rowNum": 35
         },
         {
           "type": "select_one",
-          "condition": "data('fever_how_long') > 7",
           "name": "fever_persistent",
           "label": "Has fever been present every day?",
           "appearance": "inline",
@@ -351,6 +357,7 @@
     },
     {
       "type": "menu",
+      "section": "Summary",
       "name": "menu",
       "display_title": "calculates.get_patient_name()",
       "_rowNum": 59,
@@ -361,127 +368,207 @@
     {
       "name": "get_patient_age",
       "calculation": "data('patient_age')",
-      "_rowNum": 2
+      "_rowNum": 3
     },
     {
       "name": "get_patient_name",
       "calculation": "data('patient_name')",
-      "_rowNum": 3
+      "_rowNum": 4
+    },
+    {
+      "name": "get_patient_weight",
+      "calculation": "data('patient_weight')",
+      "_rowNum": 5
     },
     {
       "name": "is_initial_visit",
       "calculation": "selected(data('initial_visit'),'yes')",
-      "_rowNum": 4
+      "_rowNum": 6
     },
     {
       "name": "can_drink",
       "calculation": "selected(data('drink'),'yes')",
-      "_rowNum": 5
+      "_rowNum": 8
     },
     {
       "name": "is_vomiting",
       "calculation": "selected(data('vomit'),'yes')",
-      "_rowNum": 6
+      "_rowNum": 9
     },
     {
       "name": "has_convulsions",
       "calculation": "selected(data('convulsions'),'yes')",
-      "_rowNum": 7
+      "_rowNum": 10
     },
     {
       "name": "has_cough",
       "calculation": "selected(data('cough'),'yes')",
-      "_rowNum": 8
+      "_rowNum": 11
     },
     {
       "name": "has_diarrhea",
       "calculation": "selected(data('diarrhea'),'yes')",
-      "_rowNum": 9
+      "_rowNum": 12
     },
     {
       "name": "had_measles",
       "calculation": "selected(data('measles'),'yes')",
-      "_rowNum": 10
+      "_rowNum": 13
     },
     {
       "name": "has_fever",
       "calculation": "selected(data('fever'),'yes')",
-      "_rowNum": 11
+      "_rowNum": 14
+    },
+    {
+      "name": "get_cough_days",
+      "calculation": "data('cough_days')",
+      "_rowNum": 16
+    },
+    {
+      "name": "get_breath_rate",
+      "calculation": "data('breath_rate')",
+      "_rowNum": 17
+    },
+    {
+      "name": "has_indrawing_stridor_wheezing",
+      "calculation": "selected(data('indraw_stridor_wheezing'))",
+      "_rowNum": 18
+    },
+    {
+      "name": "get_diarrhea_days",
+      "calculation": "data('diarrhea_days')",
+      "_rowNum": 20
+    },
+    {
+      "name": "has_blood_stool",
+      "calculation": "selected(data('diarrhea_blood'))",
+      "_rowNum": 21
+    },
+    {
+      "name": "has_sunken_eyes",
+      "calculation": "selected(data('diarrhea_sunken_eyes'))",
+      "_rowNum": 22
+    },
+    {
+      "name": "get_fever_days",
+      "calculation": "data('fever_days')",
+      "_rowNum": 24
+    },
+    {
+      "name": "has_persistent_fever",
+      "calculation": "selected(data('fever_persistent'))",
+      "_rowNum": 25
+    },
+    {
+      "name": "had_measles",
+      "calculation": "selected(data('measles_before'))",
+      "_rowNum": 26
+    },
+    {
+      "name": "has_stiffneck",
+      "calculation": "selected(data('measles_stiffneck'))",
+      "_rowNum": 27
+    },
+    {
+      "name": "has_rash_runnynose_redeyes",
+      "calculation": "selected(data('measles_signs'))",
+      "_rowNum": 28
     },
     {
       "name": "has_ear_problem",
       "calculation": "selected(data('ear_problem'),'yes')",
-      "_rowNum": 12
+      "_rowNum": 30
     },
     {
       "name": "has_ear_pain",
       "calculation": "selected(data('ear_pain'),'yes')",
-      "_rowNum": 13
+      "_rowNum": 31
     },
     {
       "name": "has_ear_discharge",
       "calculation": "selected(data('ear_discharge'),'yes')",
-      "_rowNum": 14
+      "_rowNum": 32
+    },
+    {
+      "name": "is_wasting",
+      "calculation": "selected(data('malnut_wasting'))",
+      "_rowNum": 34
+    },
+    {
+      "name": "has_oedema",
+      "calculation": "selected(data('malnut_oedema'))",
+      "_rowNum": 35
+    },
+    {
+      "name": "is_low_weight",
+      "calculation": "selected(data('malnut_lowweight'))",
+      "_rowNum": 36
+    },
+    {
+      "name": "is_anemic",
+      "calculation": "selected(data('anemia_pallor'))",
+      "_rowNum": 37
     },
     {
       "name": "general_danger_level",
       "calculation": "!calculates.can_drink() || calculates.is_vomiting() ||calculates.has_convulsions() ? \"Present\" : \"Not present\"",
-      "_rowNum": 15
+      "_rowNum": 39
     },
     {
       "name": "pneumonia_danger_level",
       "calculation": "calculates.has_cough()? \"Present\" : \"Not present\"",
-      "_rowNum": 16
+      "_rowNum": 40
     },
     {
       "name": "diarrhea_danger_level",
       "calculation": "calculates.has_diarrhea()? \"Present\" : \"Not present\"",
-      "_rowNum": 17
+      "_rowNum": 41
     },
     {
       "name": "malaria_measles_danger_level",
       "calculation": "calculates.has_fever()? \"Present\" : \"Not present\"",
-      "_rowNum": 18
+      "_rowNum": 42
     },
     {
       "name": "ear_danger_level",
       "calculation": "calculates .has_ear_problem() || calculates.has_ear_pain() || calculates.has_ear_discharge()? \"Present\" : \"Not Present\"",
-      "_rowNum": 19
+      "_rowNum": 43
     },
     {
       "name": "malnut_anemia_danger_level",
       "calculation": "\"TODO\"",
-      "_rowNum": 20
+      "_rowNum": 44
     },
     {
       "name": "danger_class_general",
       "calculation": "calculates.general_danger_level() == \"Present\" ? \"danger\" : \"good\"",
-      "_rowNum": 21
+      "_rowNum": 45
     },
     {
       "name": "danger_class_pneumonia",
       "calculation": "calculates.pneumonia_danger_level() == \"Present\" ? \"danger\" : \"good\"",
-      "_rowNum": 22
+      "_rowNum": 46
     },
     {
       "name": "danger_class_diarrhea",
       "calculation": "calculates.diarrhea_danger_level() == \"Present\" ? \"danger\" : \"good\"",
-      "_rowNum": 23
+      "_rowNum": 47
     },
     {
       "name": "danger_class_malaria_measles",
       "calculation": "calculates.malaria_measles_danger_level() == \"Present\" ? \"danger\" : \"good\"",
-      "_rowNum": 24
+      "_rowNum": 48
     },
     {
       "name": "danger_class_ear",
       "calculation": "calculates.ear_danger_level() == \"Present\" ? \"danger\" : \"good\"",
-      "_rowNum": 25
+      "_rowNum": 49
     },
     {
       "name": "danger_class_malnut_anemia",
       "calculation": "\"TODO\"",
-      "_rowNum": 26
+      "_rowNum": 50
     }
   ],
   "choices": {
@@ -565,18 +652,28 @@
   "settings": [
     {
       "setting": "form_id",
-      "value": "adaptiveIMCI",
+      "value": "adaptiveIMCI_commnunity",
       "_rowNum": 2
+    },
+    {
+      "setting": "table_id",
+      "value": "adaptiveIMCI",
+      "_rowNum": 3
     },
     {
       "setting": "form_version",
       "value": 0.5,
-      "_rowNum": 3
+      "_rowNum": 4
     },
     {
       "setting": "form_title",
       "value": "Adaptive IMCI",
-      "_rowNum": 4
+      "_rowNum": 5
+    },
+    {
+      "setting": "form_subtitle",
+      "value": "Community Version",
+      "_rowNum": 6
     }
   ],
   "model": {
@@ -613,16 +710,16 @@
     "fever": {
       "type": "string"
     },
-    "cough_how_long": {
+    "cough_days": {
       "type": "integer"
     },
     "breath_rate": {
       "type": "integer"
     },
-    "breath_danger": {
+    "indraw_stridor_wheezing": {
       "type": "string"
     },
-    "diarrhea_how_long": {
+    "diarrhea_days": {
       "type": "integer"
     },
     "diarrhea_blood": {
@@ -631,7 +728,7 @@
     "diarrhea_sunken_eyes": {
       "type": "string"
     },
-    "fever_how_long": {
+    "fever_days": {
       "type": "integer"
     },
     "fever_persistent": {

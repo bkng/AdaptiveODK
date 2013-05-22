@@ -91,22 +91,23 @@ return Backbone.View.extend({
         }
         var that = this;
         var locales = that.controller.getFormLocales();
-		var headerLabel;
+		var section;
 		if (prompt != null) {
-			headerLabel = prompt.renderContext.section;
+			section = prompt.renderContext.section;
 		}
         that.renderContext = {
             form_title: opendatakit.getSettingValue('form_title'),
+			form_subtitle: opendatakit.getSettingValue('form_subtitle'),
             instanceName: prompt.database.getInstanceMetaDataValue('instanceName'),
             locales: locales,
             hasTranslations: (locales.length > 1),
             showHeader: true,
-            showFooter: false,
 			showSubHeader: true,
+            showFooter: false,
             enableForwardNavigation: true,
             enableBackNavigation: true,
             enableNavigation: true,
-			name: headerLabel
+			headerLabel: section
             // enableNavigation -- defaults to true; false to disable everything...
             // enableForwardNavigation -- forward swipe and button
             // enableBackNavigation -- backward swipe and button

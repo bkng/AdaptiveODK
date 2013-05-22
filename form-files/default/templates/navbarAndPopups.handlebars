@@ -22,14 +22,17 @@
         <div class="odk-subheader" data-role="content" data-theme="c" data-position="float">
             <div class="subHeaderTxt">
 				<a class="odk-section-txt">
-					{{#if name}}
-						{{name}}
+					{{#if headerLabel}}
+						{{headerLabel}}
 					{{else}}
 						[no label found]
 					{{/if}}
 				</a>
 				<a class="odk-version-txt">
-				Community Version</a>
+					{{#if form_subtitle}}
+						{{form_subtitle}}
+					{{/if}}
+				</a>
 			</div>
         </div>
     {{/if}}
