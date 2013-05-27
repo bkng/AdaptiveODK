@@ -1,3 +1,4 @@
+<<<<<<< HEAD:form-files/adaptive_imci/customPromptTypes.js
 define(['mdl','promptTypes','jquery','underscore', 'formulaFunctions','opendatakit', 'prompts'],
 function(mdl,promptTypes, $, _, formulaFunctions, opendatakit) {
 			//TODO code copied from builder.js take out the not relevant things
