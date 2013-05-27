@@ -91,7 +91,7 @@ promptTypes.base = Backbone.View.extend({
         this.renderContext.required = this.required;
         this.renderContext.appearance = this.appearance;
         this.renderContext.withOther = this.withOther;
-		this.renderContext.section = this.section;
+    this.renderContext.section = this.section;
         //It's probably not good to get data like this in initialize
         //Maybe it would be better to use handlebars helpers to get metadata?
         this.renderContext.form_title = opendatakit.getSettingValue('form_title');
@@ -164,7 +164,7 @@ promptTypes.base = Backbone.View.extend({
             that.$el.empty();
             that.$el.append($virtualEl.children());
             that.$el.trigger('create');
-						that.afterRender();
+            that.afterRender();
         }
         try {
             $virtualEl.html(this.template(this.renderContext));
@@ -318,8 +318,8 @@ promptTypes.opening = promptTypes.base.extend({
             that.renderContext.instanceName = instanceName;
             database.setInstanceMetaData($.extend({}, ctxt, {
                 success: function() {
-                    ctxt.success({						
-                        enableBackNavigation: false						
+                    ctxt.success({            
+                        enableBackNavigation: false            
                     });
                 }
             }), 'instanceName', instanceName);
@@ -410,8 +410,26 @@ promptTypes.instances = promptTypes.base.extend({
     events: {
         "click .openInstance": "openInstance",
         "click .deleteInstance": "deleteInstance",
-        "click .createInstance": "createInstance"
+        "click .createInstance": "createInstance",
+        "click .scanInstance": "scanCode"
     },
+		//TODO loading the databaseIO object should be moved to builder.js
+		//default databaseIO object
+		databaseIO : {
+				deserializeDatabase: function(dbstring){
+						return dbstring;
+				},	
+				serializeDatabase : function(dbstring){
+						return dbstring;
+				}
+		},
+		//TODO experimental code -----------------------------------
+     extractDataValue: function(jsonObject) {
+        return jsonObject.result.SCAN_RESULT;
+    },
+		afterInitialize : function(ctxt){
+			this.loadCustomDatabaseIO(ctxt);
+		},
     postActivate: function(ctxt) {
         var that = this;
         ctxt.append("prompts." + this.type + ".postActivate", "px: " + this.promptIdx);
@@ -433,7 +451,7 @@ promptTypes.instances = promptTypes.base.extend({
                 });
                 ctxt.success({
                     showHeader: false,
-					showSubHeader: false,
+										showSubHeader: false,
                     enableNavigation:false,
                     showFooter:false
                 });
@@ -467,7 +485,93 @@ promptTypes.instances = promptTypes.base.extend({
             }
         }),
         $(evt.target).attr('id'));
-    }
+    },
+    scanCode: function(evt) {
+        evt.stopPropagation(true);
+        var ctxt = controller.newContext(evt);
+        var platInfo = opendatakit.getPlatformInfo();
+				var barcode_intent = 'com.google.zxing.client.android.SCAN';
+        $('#block-ui').show().on('swipeleft swiperight click', function(evt) {
+            evt.stopPropagation();
+        });
+        var outcome = shim.doAction(this.getPromptPath(), 'launch', barcode_intent,
+                            ((this.intentParameters == null) ? null : JSON.stringify(this.intentParameters)));
+        ctxt.append(barcode_intent, platInfo.container + " outcome is " + outcome);
+        if (outcome && outcome === "OK") {
+            ctxt.success();
+        } else {
+            alert("Should be OK got >" + outcome + "<");
+            $('#block-ui').hide().off();
+            ctxt.failure({message: "Action canceled."});
+        }
+    },
+    getCallback: function(promptPath, byinternalPromptContext, byaction) {
+        var that = this;
+        $('#block-ui').hide().off();
+        if ( that.getPromptPath() != promptPath ) {
+            throw new Error("Promptpath does not match: " + promptPath + " vs. " + that.getPromptPath());
+        }
+        return function(ctxt, internalPromptContext, action, jsonString) {
+            var jsonObject;
+            ctxt.append("prompts." + that.type + 'getCallback.actionFn', "px: " + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action);
+            try {
+                jsonObject = JSON.parse(jsonString);
+            } catch (e) {
+                ctxt.append("prompts." + that.type + 'getCallback.actionFn.JSONparse.exception', "px: " + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action + ' exception ' + String(e));
+                console.error("prompts." + that.type + 'getCallback.actionFn.JSONparse.exception px: ' + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action + ' exception ' + String(e));
+                ctxt.failure({message: "Action response could not be parsed."});
+            }
+            if (jsonObject.status == -1 ) { // Activity.RESULT_OK
+                ctxt.append("prompts." + that.type + 'getCallback.actionFn.resultOK', "px: " + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action);
+                if (jsonObject.result != null) {
+                	var code = that.extractDataValue(jsonObject);
+									that.loadInstanceFromBarcode(ctxt,code);
+                }
+            } else {
+                ctxt.append("prompts." + that.type + 'getCallback.actionFn.failureOutcome', "px: " + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action);
+                console.error("prompts." + that.type + 'getCallback.actionFn.failureOutcome px: ' + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action);
+                ctxt.failure({message: "Action canceled."});
+            }
+        };
+    },
+    loadInstanceFromBarcode: function(ctxt,newData){
+        try{
+          ctxt.append("prompts." + this.type + ".scanInstance", "px: " + this.promptIdx);
+          var savedVals = this.databaseIO.deserializeDatabase(newData);
+          var instanceId = savedVals.instanceId;
+					database.initializeInstance(ctxt,instanceId,{});
+          //TODO what todo with tableId???
+          var kvMap = {};
+          kvMap.instanceName = {value: savedVals.instanceName, isInstanceMetadata: true};
+          for (var key in savedVals.answers){
+            if(savedVals.answers[key] != null && key != 'calculates'){//this shows up in the model for some reason
+              console.log(key + " : " + savedVals.answers[key]);
+              kvMap[key] = {value: savedVals.answers[key], isInstanceMetaData: false};
+            }
+          }
+          database.putInstanceDataKeyValueMap(ctxt, instanceId, kvMap);
+          console.log(kvMap);
+          opendatakit.openNewInstanceId(ctxt, instanceId);
+        }
+        catch(err){
+          console.log(err);
+          alert("Could not parse data from the QR code");
+          return;
+        }
+    },
+		//This tries to load any user defined database serialization functions
+		//TODO: The approach to getting the current form path might need to change.
+		loadCustomDatabaseIO: function(ctxt){
+				var that = this;
+        require([opendatakit.getCurrentFormPath() + 'customDatabaseIO.js'], function (customDatabaseIO) {
+					that.databaseIO.serializeDatabase = customDatabaseIO.serializeDatabase; 
+					that.databaseIO.deserializeDatabase = customDatabaseIO.deserializeDatabase; 
+				},
+				function(err){
+					console.error("could not load customDatabaseIO.js");	
+					console.log(err);
+				});
+		}
 });
 promptTypes.hierarchy = promptTypes.base.extend({
     type:"hierarchy",
@@ -499,7 +603,7 @@ promptTypes.repeat = promptTypes.base.extend({
                 that.renderContext.instances = instanceList;
                 ctxt.success({
                     showHeader: false,
-					showSubHeader: false,
+          showSubHeader: false,
                     enableNavigation:false,
                     showFooter:false
                 });
@@ -672,12 +776,12 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
     },
     postActivate: function(ctxt) {
         var that = this;
-		var newctxt = $.extend({}, ctxt, {success: function(outcome) {
-			ctxt.append("prompts." + that.type + ".postActivate." + outcome,
-						"px: " + that.promptIdx);
-			that.updateRenderValue(that.parseSaveValue(that.getValue()));
-			ctxt.success();
-		}});
+				var newctxt = $.extend({}, ctxt, {success: function(outcome) {
+					ctxt.append("prompts." + that.type + ".postActivate." + outcome,
+								"px: " + that.promptIdx);
+				that.updateRenderValue(that.parseSaveValue(that.getValue()));
+				ctxt.success();
+				}});
         var populateChoicesViaQuery = function(query, newctxt){
             var queryUri = query.uri();
             if(queryUri.search('//') < 0){
@@ -697,7 +801,7 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
                 },
                 "error": function(e) {
                     newctxt.append("prompts." + this.type + ".postActivate.error", 
-								"px: " + this.promptIdx + " Error fetching choices");
+                "px: " + this.promptIdx + " Error fetching choices");
                     //This is a passive error because there could just be a problem
                     //with the content provider/network/remote service rather than with
                     //the form.
@@ -706,12 +810,12 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
                     if(e.statusText) {
                         that.renderContext.passiveError += e.statusText;
                     }
-					// TODO: verify how this error should be handled...
-					newctxt.failure({message: "Error fetching choices via ajax."});
+          // TODO: verify how this error should be handled...
+          newctxt.failure({message: "Error fetching choices via ajax."});
                 }
             };
  
-			//TODO: It might also be desireable to make it so queries can refrence
+      //TODO: It might also be desireable to make it so queries can refrence
             //datasheets in the XLSX file.
             var queryUriExt = queryUri.split('.').pop();
             if(queryUriExt === 'csv') {
@@ -721,16 +825,16 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
                         that.renderContext.choices = query.callback($.csv.toObjects(result));
                         newctxt.success("success");
                     },
-					function (err) {
-						newctxt.append("promptType.select.requirejs.failure", err.toString());
-						newctxt.failure({message: "Error fetching choices from csv data."});
-					});
+          function (err) {
+            newctxt.append("promptType.select.requirejs.failure", err.toString());
+            newctxt.failure({message: "Error fetching choices from csv data."});
+          });
                 };
             }
             
             $.ajax(ajaxOptions);
-		};
-		
+    };
+    
         that.renderContext.passiveError = null;
         if(that.param in that.form.queries) {
             populateChoicesViaQuery(that.form.queries[that.param], newctxt);

@@ -963,6 +963,29 @@ putDataKeyValueMap:function(ctxt, kvMap) {
             });
         });
 },
+/**
+ * Same as putDataKeyValueMap, except this function allows
+ * for an arbitrary instance id. This allows for the caller 
+ * to change values in other instances
+ **/
+putInstanceDataKeyValueMap:function(ctxt, instanceId, kvMap) {
+      var that = this;
+      var property;
+      var names = '';
+      for ( property in kvMap ) {
+        names += "," + property;
+      }
+      names = names.substring(1);
+      ctxt.append('database.putInstanceDataKeyValueMap.initiated', names );
+      that.withDb( ctxt, function(transaction) {
+            var is = that._insertKeyValueMapDataTableStmt(mdl.tableMetadata.dbTableName, mdl.dataTableModel, instanceId, kvMap);
+            ctxt.sqlStatement = is;
+            transaction.executeSql(is.stmt, is.bind, function(transaction, result) {
+								console.log(result);
+                ctxt.append("putInstanceDataKeyValueMap.success", names);
+            });
+        });
+},
 getAllData:function(ctxt, dataTableModel, dbTableName, instanceId) {
       var that = this;
       var tlo = { data: {}, metadata: {}};
@@ -1163,24 +1186,6 @@ save_all_changes:function(ctxt, asComplete) {
                 });
             }
         );
-},
-get_database_state:function(ctxt,onSuccess){
-	//TODO test method
-	 alert("Getting the database state!");
-	 var that = this;	
-	 ctxt.append('save_all_changes');
-	 var tmpctxt = $.extend({}, ctxt, {success:function() {
-				  ctxt.success();
-			 }});
-	 that.withDb( tmpctxt, 
-			 function(transaction) {
-				  var is = that._selectAllFromDataTableStmt(mdl.tableMetadata.dbTableName, opendatakit.getCurrentInstanceId());
-				  tmpctxt.sqlStatement = is;
-				  transaction.executeSql(is.stmt, is.bind, function(transaction, result) {
-					 onSuccess(result);
-				  });
-			 }
-		);
 },
 ignore_all_changes:function(ctxt) {
       var that = this;

@@ -549,9 +549,6 @@ window.controller = {
         window.location.hash = newhash;
         ctxt.success();
     },
-		getDatabaseState:function(ctxt,onSuccess){
-			database.get_database_state(ctxt,onSuccess);
-		},
     gotoRef:function(ctxt, pageRef) {
         var that = this;
         if ( this.prompts.length == 0 ) {
