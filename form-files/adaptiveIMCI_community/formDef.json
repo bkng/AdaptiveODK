@@ -1508,6 +1508,11 @@
       "setting": "form_subtitle",
       "value": "Community Version",
       "_rowNum": 6
+    },
+    {
+      "setting": "font-size",
+      "value": "11pt",
+      "_rowNum": 7
     }
   ],
   "model": {
