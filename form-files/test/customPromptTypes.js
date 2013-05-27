@@ -125,10 +125,8 @@ function(mdl,promptTypes, $, _, formulaFunctions, opendatakit) {
 								console.log(err);
 							});
 					},
-					afterInitialize : function(ctxt){
-						this.loadCustomDatabaseIO(ctxt);
-					},
 					postActivate: function(ctxt){
+						this.loadCustomDatabaseIO(ctxt);
 						data = {};
 						data.instanceId = mdl.instanceId;
 						data.instanceName = mdl.metadata.instanceName;
