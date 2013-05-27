@@ -1,36 +1,35 @@
-define(['promptTypes','jquery','underscore', 'formulaFunctions', 'prompts'],
-function(promptTypes, $, _, formulaFunctions) {
-		//TODO code copied from builder.js take out the not relevant things
-		function formula(content) {
-				var result = '(function(context){\n'+
-						'return ('+ content + ');\n' +
-						'})';
-				try {
-						var parsedFunction = formulaFunctions.evaluator(result);
-						return function(context){
-								try {
-										return parsedFunction.call(this, context);
-								} catch (e) {
-										console.error("builder.formula: " + result + " exception: " + String(e));
-										alert("Could not call formula.\nSee console for details.");
-										throw new Error("Exception in user formula.");
-										// controller.fatalError();
-								}
-						};
-				} catch (e) {
-						console.error("builder.formula: " + result + " exception evaluating formula: " + String(e));
-						alert("Could not evaluate formula: " + result + '\nSee console for details.');
-						throw new Error("Could not evaluate formula: " + result + '\nSee console for details.');
-						// return function(){};
-				}
-		}
-
+define(['mdl','promptTypes','jquery','underscore', 'formulaFunctions','opendatakit', 'prompts'],
+function(mdl,promptTypes, $, _, formulaFunctions, opendatakit) {
+			//TODO code copied from builder.js take out the not relevant things
+			function formula(content) {
+					var result = '(function(context){\n'+
+							'return ('+ content + ');\n' +
+							'})';
+					try {
+							var parsedFunction = formulaFunctions.evaluator(result);
+							return function(context){
+									try {
+											return parsedFunction.call(this, context);
+									} catch (e) {
+											console.error("builder.formula: " + result + " exception: " + String(e));
+											alert("Could not call formula.\nSee console for details.");
+											throw new Error("Exception in user formula.");
+											// controller.fatalError();
+									}
+							};
+					} catch (e) {
+							console.error("builder.formula: " + result + " exception evaluating formula: " + String(e));
+							alert("Could not evaluate formula: " + result + '\nSee console for details.');
+							throw new Error("Could not evaluate formula: " + result + '\nSee console for details.');
+							// return function(){};
+					}
+			}
 		return {
 			"menu" : promptTypes.base.extend({	
 				type: "menu",
 				datatype: "menu",
 				autoAdvance: true,
-				templatePath: "../test/menu.handlebars",
+				templatePath: "./templates/menu.handlebars",
 				formulaFunctions : formulaFunctions,
 				events: {
 					"click .menu-button" : "clicked"	
@@ -95,6 +94,43 @@ function(promptTypes, $, _, formulaFunctions) {
 							newctxt.failure({message: "Error fetching choices -- no ajax query or choices defined"});
 						}
 				}
+			}),
+			"generate_qr":promptTypes.base.extend({
+					type:"",
+					mdl: mdl,
+					templatePath: "./templates/generate_qr.handlebars",
+					//default databaseIO object
+					databaseIO : {
+							deserializeDatabase: function(dbstring){
+									return dbstring;
+							},	
+							serializeDatabase : function(dbstring){
+									return dbstring;
+							}
+					},
+					//This tries to load any user defined database serialization functions
+					//TODO: The approach to getting the current form path might need to change.
+					loadCustomDatabaseIO: function(ctxt){
+							var that = this;
+							require([opendatakit.getCurrentFormPath() + 'customDatabaseIO.js'], function (customDatabaseIO) {
+								that.databaseIO.serializeDatabase = customDatabaseIO.serializeDatabase; 
+								that.databaseIO.deserializeDatabase = customDatabaseIO.deserializeDatabase; 
+							},
+							function(err){
+								console.error("could not load customDatabaseIO.js");	
+								console.log(err);
+							});
+					},
+					postActivate: function(ctxt){
+						this.loadCustomDatabaseIO(ctxt);
+						data = {};
+						data.instanceId = mdl.instanceId;
+						data.instanceName = mdl.metadata.instanceName;
+						data.tableId = mdl.tableMetadata.table_id;
+						data.answers = mdl.data;
+						this.renderContext.qr_string = this.databaseIO.serializeDatabase(data);
+						ctxt.success();
+					}
 			})
 		};
 });

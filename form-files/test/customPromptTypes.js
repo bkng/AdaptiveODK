@@ -24,16 +24,12 @@ function(mdl,promptTypes, $, _, formulaFunctions, opendatakit) {
 							// return function(){};
 					}
 			}
-		function constructDatabaseString(mdl){
-			//return lzw_encode(JSON.stringify(data));
-			return data;
-		}
 		return {
 			"menu" : promptTypes.base.extend({	
 				type: "menu",
 				datatype: "menu",
 				autoAdvance: true,
-				templatePath: "../test/menu.handlebars",
+				templatePath: "./templates/menu.handlebars",
 				formulaFunctions : formulaFunctions,
 				events: {
 					"click .menu-button" : "clicked"	
@@ -102,7 +98,7 @@ function(mdl,promptTypes, $, _, formulaFunctions, opendatakit) {
 			"generate_qr":promptTypes.base.extend({
 					type:"",
 					mdl: mdl,
-					templatePath: "../test/generate_qr.handlebars",
+					templatePath: "./templates/generate_qr.handlebars",
 					//default databaseIO object
 					databaseIO : {
 							deserializeDatabase: function(dbstring){
