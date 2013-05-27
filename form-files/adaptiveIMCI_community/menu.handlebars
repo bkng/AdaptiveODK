@@ -1,0 +1,21 @@
+	<form>
+		{{> labelHint}}
+				<div class="menu">
+					<div class="menu-title">Patient Name: {{title}}</div>
+				{{#each choices}}
+					<div class="menu-button">
+						<div class="menu-left">
+							<span class="menu-text">{{label}}</span>
+							<span class="menu-subtext">{{display_subtext}}</span>
+						</div>
+						<div class="menu-right">
+							<span class="menu-text {{display_r_label_style}}">{{display_r_label}}</span>
+							<span class="menu-subtext {{display_r_subtext_style}}">{{display_r_subtext}}</span>
+						</div>
+						{{! 'menu-target' must be the last div in menu-button}}
+						<div class="menu-target" style="display: none;">{{parent_label}}</div>
+					 </div>
+				{{/each}}
+				</div><!-- /menu-grid --> 	
+	</form>
+		<div style="clear:both;"></div>

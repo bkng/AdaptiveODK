@@ -1,0 +1,1649 @@
+{
+  "survey": [
+    {
+      "type": "label",
+      "_rowNum": 2,
+      "param": "demographics"
+    },
+    {
+      "type": "screen",
+      "section": "Demographics",
+      "_rowNum": 3,
+      "prompts": [
+        {
+          "type": "text",
+          "name": "patient_name",
+          "label": "What is the child's name?",
+          "required": true,
+          "_rowNum": 4
+        },
+        {
+          "type": "text",
+          "name": "patient_age",
+          "label": "How old is the child? (months)",
+          "_rowNum": 5
+        },
+        {
+          "type": "text",
+          "name": "patient_weight",
+          "label": "How much does the child weigh? (kg)",
+          "_rowNum": 6
+        },
+        {
+          "type": "select_one",
+          "name": "initial_visit",
+          "label": "Initial visit?",
+          "appearance": "inline",
+          "_rowNum": 7,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "label",
+      "_rowNum": 9,
+      "param": "danger"
+    },
+    {
+      "type": "screen",
+      "section": "Danger Signs",
+      "_rowNum": 10,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "drink",
+          "label": "Is the child able to drink or breastfeed?",
+          "appearance": "inline",
+          "required": true,
+          "_rowNum": 11,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "vomit",
+          "label": "Does the child vomit everything?",
+          "appearance": "inline",
+          "required": true,
+          "_rowNum": 12,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "convulsions",
+          "label": "Has the child had convulsions?",
+          "appearance": "inline",
+          "required": true,
+          "_rowNum": 13,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "screen",
+      "section": "General Symptoms",
+      "_rowNum": 15,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "cough",
+          "label": "Does the child have a cough or have difficulty breathing?",
+          "appearance": "inline",
+          "required": true,
+          "_rowNum": 16,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea",
+          "label": "Does the child have diarrhea?",
+          "appearance": "inline",
+          "required": true,
+          "_rowNum": 17,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "measles",
+          "label": "Has the child had measles in the last three months?",
+          "appearance": "inline",
+          "required": true,
+          "_rowNum": 18,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "fever",
+          "label": "Does the child have a fever?",
+          "appearance": "inline",
+          "required": true,
+          "_rowNum": 19,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "label",
+      "_rowNum": 21,
+      "param": "pneumonia"
+    },
+    {
+      "type": "screen",
+      "section": "Pneumonia",
+      "condition": "selected(data('cough'), 'yes')",
+      "_rowNum": 22,
+      "prompts": [
+        {
+          "type": "integer",
+          "name": "cough_days",
+          "label": "How long has the child had a cough? (days)",
+          "appearance": "inline",
+          "_rowNum": 23
+        },
+        {
+          "type": "integer",
+          "name": "breath_rate",
+          "label": "How many breaths does the child take in one minute?",
+          "_rowNum": 24
+        },
+        {
+          "type": "select_one",
+          "name": "indraw_stridor_wheezing",
+          "label": "Does thie child show chest indrawing, stridor, or wheezing?",
+          "appearance": "inline",
+          "_rowNum": 25,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "label",
+      "_rowNum": 27,
+      "param": "diarrhea"
+    },
+    {
+      "type": "screen",
+      "section": "Diarrhea",
+      "condition": "selected(data('diarrhea'), 'yes')",
+      "_rowNum": 28,
+      "prompts": [
+        {
+          "type": "integer",
+          "name": "diarrhea_days",
+          "label": "How long has the child had diarrhea? (days)",
+          "appearance": "inline",
+          "_rowNum": 29
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea_blood",
+          "label": "Is there blood in the stool?",
+          "appearance": "inline",
+          "_rowNum": 30,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea_lethargic",
+          "label": "Is the child lethargic or unconscnious?",
+          "appearance": "inline",
+          "_rowNum": 31,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea_restless",
+          "label": "Is the child restless and irritable?",
+          "appearance": "inline",
+          "_rowNum": 32,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea_drink_properly",
+          "label": "Offer the child fluids, are they able to drink properly?",
+          "appearance": "inline",
+          "_rowNum": 33,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea_thirsty",
+          "label": "Does the child drink eagerly, seem very thirsty?",
+          "appearance": "inline",
+          "_rowNum": 34,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea_pinch",
+          "label": "Pinch the child's skin, does the pinch go back very slowly?",
+          "appearance": "inline",
+          "_rowNum": 35,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "diarrhea_sunken_eyes",
+          "label": "Does the child have sunken eyes?",
+          "appearance": "inline",
+          "_rowNum": 36,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "label",
+      "_rowNum": 38,
+      "param": "malaria_measles"
+    },
+    {
+      "type": "screen",
+      "section": "Measles & Malaria",
+      "condition": "selected(data('measles'), 'yes') || selected(data('fever'), 'yes')",
+      "_rowNum": 39,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "malaria_risk",
+          "label": "Are you in an area at high risk for malaia?",
+          "appearance": "inline",
+          "_rowNum": 40,
+          "param": "yesno"
+        },
+        {
+          "type": "integer",
+          "name": "fever_days",
+          "label": "How long has the child had a fever? (days)",
+          "appearance": "inline",
+          "_rowNum": 41
+        },
+        {
+          "type": "select_one",
+          "name": "fever_persistent",
+          "label": "Has fever been present every day?",
+          "appearance": "inline",
+          "_rowNum": 42,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "measles_before",
+          "label": "Has the child had measles within the last 3 months?",
+          "appearance": "inline",
+          "_rowNum": 43,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "measles_stiffneck",
+          "label": "Does the child have a stiff neck?",
+          "appearance": "inline",
+          "_rowNum": 44,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "measles_signs",
+          "label": "Does the child have a rash, runny nose, and/or red eyes?",
+          "appearance": "inline",
+          "_rowNum": 45,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "screen",
+      "section": "Measles & Malaria",
+      "condition": "selected(data('measles_before'), 'yes')",
+      "_rowNum": 47,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "measles_ulcers",
+          "label": "Does the child have mouth ulcers?",
+          "appearance": "inline",
+          "_rowNum": 48,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "measles_eyedischarge",
+          "label": "Does the child have pus draining from his/her eye?",
+          "appearance": "inline",
+          "_rowNum": 49,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "measles_eyeclouding",
+          "label": "Are the child's eyes cloudy?",
+          "appearance": "inline",
+          "_rowNum": 50,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "label",
+      "_rowNum": 52,
+      "param": "ear"
+    },
+    {
+      "type": "screen",
+      "section": "Ear Problems",
+      "_rowNum": 53,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "ear_problem",
+          "label": "Does the child have an ear problem?",
+          "appearance": "inline",
+          "_rowNum": 54,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "ear_pain",
+          "label": "Is there an ear pain?",
+          "appearance": "inline",
+          "_rowNum": 55,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "ear_tender",
+          "label": "Is there tender swelling behind the ear?",
+          "appearance": "inline",
+          "_rowNum": 56,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "ear_discharge",
+          "label": "Is there an ear discharge?",
+          "appearance": "inline",
+          "_rowNum": 57,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "label",
+      "_rowNum": 59,
+      "param": "malnut_anemia"
+    },
+    {
+      "type": "screen",
+      "section": "Malnutrition & Anemia",
+      "_rowNum": 60,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "malnut_wasting",
+          "label": "Is the child visibly wasting?",
+          "appearance": "inline",
+          "_rowNum": 61,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "malnut_oedema",
+          "label": "Does the show oedema of both feet?",
+          "appearance": "inline",
+          "_rowNum": 62,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "malnut_lowweight",
+          "label": "Is the child's weight low for his/her age?",
+          "appearance": "inline",
+          "_rowNum": 63,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "anemia_pallor",
+          "label": "Does the child have palmar pallor?",
+          "appearance": "inline",
+          "_rowNum": 64,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "pallor_severity",
+          "label": "Is the palmar pallor severe?",
+          "appearance": "inline",
+          "_rowNum": 65,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "section": "Summary",
+      "name": "menu",
+      "display_title": "calculates.get_patient_name()",
+      "_rowNum": 67,
+      "param": "menu_options"
+    },
+    {
+      "type": "screen",
+      "section": "Treatment",
+      "name": "treatment",
+      "_rowNum": 68,
+      "prompts": [
+        {
+          "type": "note",
+          "name": "treatment_intro",
+          "label": "We are sorry that your child is sick. Based on your answers, we recommend the following treatments:",
+          "_rowNum": 69
+        },
+        {
+          "type": "note",
+          "name": "treat_now",
+          "label": "Immediate Action:",
+          "_rowNum": 70
+        },
+        {
+          "type": "select_multiple",
+          "name": "Immediate_Action_List",
+          "choice_filter": "context.danger == \"danger\"",
+          "_rowNum": 71,
+          "param": "treat_now_options"
+        },
+        {
+          "type": "note",
+          "name": "References",
+          "label": "Follow-Up:",
+          "_rowNum": 72
+        },
+        {
+          "type": "select_multiple",
+          "name": "followUp",
+          "choice_filter": "context.danger == \"danger\"",
+          "_rowNum": 73,
+          "param": "follow_up"
+        }
+      ]
+    }
+  ],
+  "calculates": [
+    {
+      "name": "get_patient_age",
+      "calculation": "data('patient_age')",
+      "_rowNum": 3
+    },
+    {
+      "name": "get_patient_name",
+      "calculation": "data('patient_name')",
+      "_rowNum": 4
+    },
+    {
+      "name": "get_patient_weight",
+      "calculation": "data('patient_weight')",
+      "_rowNum": 5
+    },
+    {
+      "name": "is_initial_visit",
+      "calculation": "selected(data('initial_visit'),'yes')",
+      "_rowNum": 6
+    },
+    {
+      "name": "can_drink",
+      "calculation": "selected(data('drink'),'yes')",
+      "_rowNum": 8
+    },
+    {
+      "name": "is_vomiting",
+      "calculation": "selected(data('vomit'),'yes')",
+      "_rowNum": 9
+    },
+    {
+      "name": "has_convulsions",
+      "calculation": "selected(data('convulsions'),'yes')",
+      "_rowNum": 10
+    },
+    {
+      "name": "has_cough",
+      "calculation": "selected(data('cough'),'yes')",
+      "_rowNum": 11
+    },
+    {
+      "name": "has_diarrhea",
+      "calculation": "selected(data('diarrhea'),'yes')",
+      "_rowNum": 12
+    },
+    {
+      "name": "had_measles",
+      "calculation": "selected(data('measles'),'yes')",
+      "_rowNum": 13
+    },
+    {
+      "name": "has_fever",
+      "calculation": "selected(data('fever'),'yes')",
+      "_rowNum": 14
+    },
+    {
+      "name": "get_cough_days",
+      "calculation": "data('cough_days')",
+      "_rowNum": 16
+    },
+    {
+      "name": "get_breath_rate",
+      "calculation": "data('breath_rate')",
+      "_rowNum": 17
+    },
+    {
+      "name": "has_indrawing_stridor_wheezing",
+      "calculation": "selected(data('indraw_stridor_wheezing'), 'yes')",
+      "_rowNum": 18
+    },
+    {
+      "name": "get_diarrhea_days",
+      "calculation": "data('diarrhea_days')",
+      "_rowNum": 20
+    },
+    {
+      "name": "has_blood_stool",
+      "calculation": "selected(data('diarrhea_blood'), 'yes')",
+      "_rowNum": 21
+    },
+    {
+      "name": "is_lethargic",
+      "calculation": "selected(data('diarrhea_lethargic'), 'yes')",
+      "_rowNum": 22
+    },
+    {
+      "name": "is_restless",
+      "calculation": "selected(data('diarrhea_restless'), 'yes')",
+      "_rowNum": 23
+    },
+    {
+      "name": "can_drink_properly",
+      "calculation": "selected(data('diarrhea_drink_properly'),'yes')",
+      "_rowNum": 24
+    },
+    {
+      "name": "slow_pinch_recovery",
+      "calculation": "selected(data('diarrhea_pinch'), 'yes')",
+      "_rowNum": 25
+    },
+    {
+      "name": "has_sunken_eyes",
+      "calculation": "selected(data('diarrhea_sunken_eyes'), 'yes')",
+      "_rowNum": 26
+    },
+    {
+      "name": "is_thirsty",
+      "calculation": "selected(data('diarrhea_thirsty'), 'yes')",
+      "_rowNum": 27
+    },
+    {
+      "name": "malaria_risk",
+      "calculation": "selected(data('malaria_risk'), 'yes')",
+      "_rowNum": 29
+    },
+    {
+      "name": "get_fever_days",
+      "calculation": "data('fever_days')",
+      "_rowNum": 30
+    },
+    {
+      "name": "has_persistent_fever",
+      "calculation": "selected(data('fever_persistent', 'yes'))",
+      "_rowNum": 31
+    },
+    {
+      "name": "had_measles",
+      "calculation": "selected(data('measles_before'), 'yes')",
+      "_rowNum": 32
+    },
+    {
+      "name": "has_stiffneck",
+      "calculation": "selected(data('measles_stiffneck'),'yes')",
+      "_rowNum": 33
+    },
+    {
+      "name": "has_rash_runnynose_redeyes",
+      "calculation": "selected(data('measles_signs'),'yes')",
+      "_rowNum": 35
+    },
+    {
+      "name": "has_ulcers",
+      "calculation": "selected(data('measles_ulcers'), 'yes')",
+      "_rowNum": 36
+    },
+    {
+      "name": "has_eyedischarge",
+      "calculation": "selected(data('measles_eyedischarge'),'yes')",
+      "_rowNum": 37
+    },
+    {
+      "name": "has_eyeclouding",
+      "calculation": "selected(data('measles_eyeclouding'), 'yes')",
+      "_rowNum": 38
+    },
+    {
+      "name": "has_ear_problem",
+      "calculation": "selected(data('ear_problem'),'yes')",
+      "_rowNum": 40
+    },
+    {
+      "name": "has_ear_pain",
+      "calculation": "selected(data('ear_pain'),'yes')",
+      "_rowNum": 41
+    },
+    {
+      "name": "has_ear_discharge",
+      "calculation": "selected(data('ear_discharge'),'yes')",
+      "_rowNum": 42
+    },
+    {
+      "name": "has_ear_tenderness",
+      "calculation": "selected(data('ear_tender'),'yes')",
+      "_rowNum": 43
+    },
+    {
+      "name": "is_wasting",
+      "calculation": "selected(data('malnut_wasting'), 'yes')",
+      "_rowNum": 45
+    },
+    {
+      "name": "has_oedema",
+      "calculation": "selected(data('malnut_oedema'), 'yes')",
+      "_rowNum": 46
+    },
+    {
+      "name": "is_low_weight",
+      "calculation": "selected(data('malnut_lowweight'), 'yes')",
+      "_rowNum": 47
+    },
+    {
+      "name": "is_anemic",
+      "calculation": "selected(data('anemia_pallor'), 'yes')",
+      "_rowNum": 48
+    },
+    {
+      "name": "is_severe_pallor",
+      "calculation": "selected(data('pallor_severity'), 'yes')",
+      "_rowNum": 49
+    },
+    {
+      "name": "severe_classification",
+      "calculation": "calculates.general_danger_level() == \"Present\" || calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_pneumonia() == \"danger\" || calculates.high_danger_diarrhea() == \"danger\" || calculates.high_danger_malaria() == \"danger\"|| calculates.high_danger_measles() == \"danger\" || calculates.high_danger_ear() == \"danger\" || calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\" ? \"danger\" : \"good\"",
+      "_rowNum": 51
+    },
+    {
+      "name": "general_danger_level",
+      "calculation": "!calculates.can_drink() || calculates.is_vomiting() ||calculates.has_convulsions() ? \"Present\" : \"Not present\"",
+      "_rowNum": 53
+    },
+    {
+      "name": "pneumonia_danger_level",
+      "calculation": "calculates.has_cough()? \"Present\" : \"Not present\"",
+      "_rowNum": 54
+    },
+    {
+      "name": "diarrhea_danger_level",
+      "calculation": "calculates.has_diarrhea()? \"Present\" : \"Not present\"",
+      "_rowNum": 55
+    },
+    {
+      "name": "malaria_measles_danger_level",
+      "calculation": "calculates.has_fever()? \"Present\" : \"Not present\"",
+      "_rowNum": 56
+    },
+    {
+      "name": "ear_danger_level",
+      "calculation": "calculates .has_ear_problem() || calculates.has_ear_pain() || calculates.has_ear_discharge()? \"Present\" : \"Not present\"",
+      "_rowNum": 57
+    },
+    {
+      "name": "malnut_anemia_danger_level",
+      "calculation": "\"TODO\"",
+      "_rowNum": 58
+    },
+    {
+      "name": "danger_class_general",
+      "calculation": "calculates.general_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 59
+    },
+    {
+      "name": "danger_class_pneumonia",
+      "calculation": "calculates.pneumonia_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 60
+    },
+    {
+      "name": "danger_class_diarrhea",
+      "calculation": "calculates.diarrhea_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 61
+    },
+    {
+      "name": "danger_class_malaria_measles",
+      "calculation": "calculates.malaria_measles_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 62
+    },
+    {
+      "name": "danger_class_ear",
+      "calculation": "calculates.ear_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "_rowNum": 63
+    },
+    {
+      "name": "danger_class_malnut_anemia",
+      "calculation": "\"TODO\"",
+      "_rowNum": 64
+    },
+    {
+      "name": "danger_class_see_dr",
+      "calculation": "calculates.general_danger_level() == \"Present\" || calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_measles() == \"danger\" || calculates.high_danger_pneumonia() == \"danger\" || calculates.high_danger_diarrhea() == \"danger\" || calculates.high_danger_ear() ==\"danger\" || calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\" ? \"danger\" : \"good\"",
+      "_rowNum": 66
+    },
+    {
+      "name": "high_danger_malaria",
+      "calculation": "(calculates.has_fever() && (calculates.has_stiffneck() || calculates.general_danger_level() == \"Present\") ) ? \"danger\" : \"good\"",
+      "_rowNum": 67
+    },
+    {
+      "name": "med_danger_malaria",
+      "calculation": "calculates.high_danger_malaria() == \"good\" && (calculates.has_fever() && calculates.malaria_risk()) || (calculates.has_fever() && !calculates.malaria_risk() && !calculates.has_rash_runnynose_redeyes() && !calculates.had_measles()) ? \"danger\" : \"good\"",
+      "_rowNum": 68
+    },
+    {
+      "name": "low_danger_malaria",
+      "calculation": "calculates.high_danger_malaria() == \"good\" && calculates.med_danger_malaria() == \"good\" && calculates.has_fever() && !calculates.malaria_risk() && (calculates.has_rash_runnynose_redeyes() || calculates.had_measles()) ? \"danger\" : \"good\"",
+      "_rowNum": 69
+    },
+    {
+      "name": "high_danger_measles",
+      "calculation": "calculates.had_measles() && (calculates.general_danger_level() == \"Present\" || calculates.has_eyeclouding() || calculates.has_ulcers())? \"danger\" : \"good\"",
+      "_rowNum": 71
+    },
+    {
+      "name": "med_danger_measles",
+      "calculation": "calculates.had_measles() && calculates.high_danger_measles() == \"good\" && calculates.has_eyedischarge() ? \"danger\" : \"good\"",
+      "_rowNum": 72
+    },
+    {
+      "name": "low_danger_measles",
+      "calculation": "calculates.had_measles() && calculates.high_danger_measles() == \"good\" && calculates.med_danger_measles() == \"good\" ? \"danger\" : \"good\"",
+      "_rowNum": 73
+    },
+    {
+      "name": "has_fast_breathing",
+      "calculation": "(calculates.get_breath_rate() >= 50 && calculates.get_patient_age() <= 12) || (calculates.get_breath_rate() >= 40 && calculates.get_patient_age() > 12)",
+      "_rowNum": 75
+    },
+    {
+      "name": "high_danger_pneumonia",
+      "calculation": "calculates.has_cough() && (calculates.general_danger_level() == \"Present\" || calculates.has_indrawing_stridor_wheezing()) ? \"danger\" : \"good\"",
+      "_rowNum": 76
+    },
+    {
+      "name": "med_danger_pneumonia",
+      "calculation": "calculates.has_cough() && calculates.high_danger_pneumonia() == \"good\" && calculates.has_fast_breathing() ? \"danger\" : \"good\"",
+      "_rowNum": 77
+    },
+    {
+      "name": "low_danger_pneumonia",
+      "calculation": "(calculates.has_cough() && calculates.high_danger_pneumonia() == \"good\" && calculates.med_danger_pneumonia() == \"good\") ? \"danger\" : \"good\"",
+      "_rowNum": 78
+    },
+    {
+      "name": "lethargic_and_sunken",
+      "calculation": "calculates.is_lethargic() && calculates.has_sunken_eyes()",
+      "_rowNum": 80
+    },
+    {
+      "name": "lethargic_and_not_drink",
+      "calculation": "calculates.is_lethargic() && !calculates.can_drink_properly()",
+      "_rowNum": 81
+    },
+    {
+      "name": "lethargic_and_slow_pinch",
+      "calculation": "calculates.is_lethargic() && calculates.slow_pinch_recovery()",
+      "_rowNum": 82
+    },
+    {
+      "name": "sunken_and_not_drink",
+      "calculation": "calculates.has_sunken_eyes() && !calculates.can_drink_properly()",
+      "_rowNum": 83
+    },
+    {
+      "name": "sunken_and_slow_pinch",
+      "calculation": "calculates.has_sunken_eyes() && calculates.slow_pinch_recovery()",
+      "_rowNum": 84
+    },
+    {
+      "name": "not_drink_and_slow_pinch",
+      "calculation": "!calculates.can_drink_properly() && calculates.slow_pinch_recovery()",
+      "_rowNum": 85
+    },
+    {
+      "name": "restless_and_sunken",
+      "calculation": "calculates.is_restless() && calculates.has_sunken_eyes()",
+      "_rowNum": 87
+    },
+    {
+      "name": "restless_and_thirsty",
+      "calculation": "calculates.is_restless() && calculates.is_thirsty()",
+      "_rowNum": 88
+    },
+    {
+      "name": "restless_and_slow_pinch",
+      "calculation": "calculates.is_restless() && calculates.slow_pinch_recovery()",
+      "_rowNum": 89
+    },
+    {
+      "name": "sunken_and_thirsty",
+      "calculation": "calculates.has_sunken_eyes() && calculates.is_thirsty()",
+      "_rowNum": 90
+    },
+    {
+      "name": "sunken_and_slow_pinch",
+      "calculation": "calculates.has_sunken_eyes() && calculates.slow_pinch_recovery()",
+      "_rowNum": 91
+    },
+    {
+      "name": "thirsty_and_slow_pinch",
+      "calculation": "calculates.slow_pinch_recovery() && calculates.is_thirsty()",
+      "_rowNum": 92
+    },
+    {
+      "name": "high_danger_dehydration",
+      "calculation": "(calculates.has_diarrhea() && (calculates.lethargic_and_sunken() || calculates.lethargic_and_not_drink() || calculates.lethargic_and_slow_pinch() || calculates.sunken_and_not_drink() || calculates.sunken_and_slow_pinch() || calculates.not_drink_and_slow_pinch() ) )? \"danger\" : \"good\"",
+      "_rowNum": 94
+    },
+    {
+      "name": "med_danger_dehydration",
+      "calculation": "(calculates.has_diarrhea() && calculates.high_danger_dehydration() == \"good\" && (calculates.restless_and_sunken() || calculates.restless_and_thirsty() || calculates.restless_and_slow_pinch() || calculates.sunken_and_thirsty() || calculates.sunken_and_slow_pinch() || calculates.thirsty_and_slow_pinch())) ? \"danger\" : \"good\"",
+      "_rowNum": 95
+    },
+    {
+      "name": "low_danger_dehydration",
+      "calculation": "(calculates.has_diarrhea() && calculates.high_danger_dehydration() == \"good\" && calculates.med_danger_dehydration() == \"good\") ? \"danger\" : \"good\"",
+      "_rowNum": 96
+    },
+    {
+      "name": "high_danger_diarrhea",
+      "calculation": "calculates.has_diarrhea() && calculates.get_diarrhea_days() >= 14 && (calculates.high_danger_dehydration() == \"danger\" || calculates.med_danger_dehydration() == \"danger\") ? \"danger\" : \"good\"",
+      "_rowNum": 98
+    },
+    {
+      "name": "med_danger_diarrhea",
+      "calculation": "(calculates.has_diarrhea() && calculates.get_diarrhea_days() >= 14 && calculates.high_danger_diarrhea() == \"good\") ? \"danger\" : \"good\"",
+      "_rowNum": 99
+    },
+    {
+      "name": "danger_dysentry",
+      "calculation": "calculates.has_diarrhea() && calculates.has_blood_stool() ? \"danger\" : \"good\"",
+      "_rowNum": 101
+    },
+    {
+      "name": "high_danger_ear",
+      "calculation": "(calculates.has_ear_problem() && calculates.has_ear_tenderness()) ? \"danger\": \"good\"",
+      "_rowNum": 103
+    },
+    {
+      "name": "med_danger_ear",
+      "calculation": "(calculates.has_ear_problem() && calculates.high_danger_ear() == \"good\" && (calculates.has_ear_discharge() || calculates.has_ear_pain())) ? \"danger\" : \"good\"",
+      "_rowNum": 104
+    },
+    {
+      "name": "low_danger_ear",
+      "calculation": "(calculates.has_ear_problem() && calculates.high_danger_ear() == \"good\" && calculates.med_danger_ear() == \"good\")?  \"danger\" : \"good\"",
+      "_rowNum": 105
+    },
+    {
+      "name": "high_danger_malnut",
+      "calculation": "calculates.is_wasting() || calculates.has_oedema() ? \"danger\" : \"good\"",
+      "_rowNum": 107
+    },
+    {
+      "name": "med_danger_malnut",
+      "calculation": "calculates.is_low_weight() && calculates.high_danger_malnut() == \"good\" ? \"danger\" : \"good\"",
+      "_rowNum": 108
+    },
+    {
+      "name": "high_danger_anemia",
+      "calculation": "calculates.is_anemic() && calculates.is_severe_pallor() ? \"danger\" : \"good\"",
+      "_rowNum": 110
+    },
+    {
+      "name": "med_danger_anemia",
+      "calculation": "calculates.high_danger_anemia() == \"good\" && calculates.is_anemic() ? \"danger\" : \"good\"",
+      "_rowNum": 111
+    }
+  ],
+  "choices": {
+    "yesno": [
+      {
+        "list_name": "yesno",
+        "name": "yes",
+        "label": "Yes",
+        "_rowNum": 2
+      },
+      {
+        "list_name": "yesno",
+        "name": "no",
+        "label": "No",
+        "_rowNum": 3
+      }
+    ],
+    "menu_options": [
+      {
+        "list_name": "menu_options",
+        "name": "general_option",
+        "label": "General Symptoms",
+        "parent_label": "danger",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.general_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_general()}}",
+        "_rowNum": 4
+      },
+      {
+        "list_name": "menu_options",
+        "name": "pneumonia_option",
+        "label": "Pneumonia Symptoms",
+        "parent_label": "pneumonia",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.pneumonia_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_pneumonia()}}",
+        "_rowNum": 5
+      },
+      {
+        "list_name": "menu_options",
+        "name": "diarrhea_option",
+        "label": "Diarrhea Symptoms",
+        "parent_label": "diarrhea",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.diarrhea_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_diarrhea()}}",
+        "_rowNum": 6
+      },
+      {
+        "list_name": "menu_options",
+        "name": "malaria_measles_option",
+        "label": "Malaria and Measles",
+        "parent_label": "malaria_measles",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.malaria_measles_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_malaria_measles()}}",
+        "_rowNum": 7
+      },
+      {
+        "list_name": "menu_options",
+        "name": "ear_option",
+        "label": "Ear Problems",
+        "parent_label": "ear",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.ear_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_ear()}}",
+        "_rowNum": 8
+      },
+      {
+        "list_name": "menu_options",
+        "name": "malnut_anemia_option",
+        "label": "Malnutrition & Anemia",
+        "parent_label": "malnut_anemia",
+        "display_subtext": "Click to view section",
+        "display_r_label": "{{calculates.malnut_anemia_danger_level()}}",
+        "display_r_label_style": "{{calculates.danger_class_malnut_anemia()}}",
+        "_rowNum": 9
+      }
+    ],
+    "treat_now_options": [
+      {
+        "list_name": "treat_now_options",
+        "name": "go_to_clinic",
+        "label": "Refer URGENTLY to hospital",
+        "display_subtext": "due to general symptoms",
+        "danger": "{{calculates.danger_class_see_dr()}}",
+        "_rowNum": 11
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_high",
+        "label": "Give Quinine for severe Malaria (first dose)",
+        "display_subtext": "due to very severe febrile disease",
+        "danger": "{{calculates.high_danger_malaria()}}",
+        "_rowNum": 13
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_high2",
+        "label": "Give first dose of antibiotic",
+        "display_subtext": "due to very severe febrile disease",
+        "danger": "{{calculates.high_danger_malaria()}}",
+        "_rowNum": 14
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_high3",
+        "label": "Treat child to preven low blood sugar",
+        "display_subtext": "due to very severe febrile disease",
+        "danger": "{{calculates.high_danger_malaria()}}",
+        "_rowNum": 15
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_high4",
+        "label": "Give one dose of paracetamol in clinic for high fever (38.5 C or above)",
+        "display_subtext": "due to very severe febrile disease",
+        "danger": "{{calculates.high_danger_malaria()}}",
+        "_rowNum": 16
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_med",
+        "label": "Give oral co-artemeter or other antimalarial",
+        "display_subtext": "due to malaria",
+        "danger": "{{calculates.med_danger_malaria()}}",
+        "_rowNum": 17
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_med2",
+        "label": "Give one dose of paracetamol in clinic for high fever (38.5 C or above)",
+        "display_subtext": "due to malaria",
+        "danger": "{{calculates.med_danger_malaria()}}",
+        "_rowNum": 18
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malaria_low",
+        "label": "Give one dose of paracetamol in clinic for high fever (38.5 C or above)",
+        "display_subtext": "due to fever",
+        "danger": "{{calculates.low_danger_malaria()}}",
+        "_rowNum": 19
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "measles_high",
+        "label": "Give Vitamin A treatment",
+        "display_subtext": "due to severe complicated measles",
+        "danger": "{{calculates.high_danger_measles()}}",
+        "_rowNum": 21
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "measles_high2",
+        "label": "Give first dose of an appropriate antibiotic",
+        "display_subtext": "due to severe complicated measles",
+        "danger": "{{calculates.high_danger_measles()}}",
+        "_rowNum": 22
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "measles_high3",
+        "label": "If clouding of the cornea or pus draining from the eye, apply tetracycline eye ointment",
+        "display_subtext": "due to severe complicated measles",
+        "danger": "{{calculates.high_danger_measles()}}",
+        "_rowNum": 23
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "measles_med",
+        "label": "Give Vitamin A treatment",
+        "display_subtext": "due to measles with eye or mouth complications",
+        "danger": "{{calculates.med_danger_measles()}}",
+        "_rowNum": 24
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "measles_med2",
+        "label": "If pus draining from the eye, treat eye infection with tetracycline eye ointment",
+        "display_subtext": "due to measles with eye or mouth complications",
+        "danger": "{{calculates.med_danger_measles()}}",
+        "_rowNum": 25
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "pneumonia_high",
+        "label": "Give first dose of appropriate antibiotic",
+        "display_subtext": "due to severe pneumonia",
+        "danger": "{{calculates.high_danger_pneumonia()}}",
+        "_rowNum": 27
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "pneumonia_med",
+        "label": "Give oral antibiotic for 3 days",
+        "display_subtext": "due to pneumonia",
+        "danger": "{{calculates.med_danger_pneumonia()}}",
+        "_rowNum": 28
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dehydration_high_only",
+        "label": "Give fluid for severe dehydration",
+        "display_subtext": "due to severe dehydration",
+        "danger": "{{calculates.high_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"good\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 30
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dehydration_high",
+        "label": "Give frequent sips of ORS",
+        "display_subtext": "due to severe dehydration",
+        "danger": "{{calculates.high_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"danger\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 31
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dehydration_high2",
+        "label": "Advise mother to continue to breastfeed",
+        "display_subtext": "due to severe dehydration",
+        "danger": "{{calculates.high_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"danger\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 32
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dehydration_high3",
+        "label": "If child is 2 years or older and cholera is in your area, give antibiotics for cholera",
+        "display_subtext": "due to severe dehydration",
+        "danger": "{{calculates.high_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"danger\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 33
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dehydration_med_only",
+        "label": "Med Danger Dehydration Only",
+        "display_subtext": "due to some dehydration",
+        "danger": "{{calculates.med_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"good\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 34
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dehydration_med",
+        "label": "Give frequent sips of ORS",
+        "display_subtext": "due to some dehydration",
+        "danger": "{{calculates.med_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"danger\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 35
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dehydration_med2",
+        "label": "Advise mother to continue to breastfeed",
+        "display_subtext": "due to some dehydration",
+        "danger": "{{calculates.med_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"danger\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 36
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "diarrhea_high",
+        "label": "Treat dehydration before referral unless the child has another severe classification",
+        "display_subtext": "due to severe persistent diarrhea",
+        "danger": "{{calculates.high_danger_diarrhea()}}",
+        "_rowNum": 38
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "dysentry",
+        "label": "Give ciprofloxacin for 3 days",
+        "display_subtext": "due to dysentry",
+        "danger": "{{calculates.danger_dysentry()}}",
+        "_rowNum": 40
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "ear_high",
+        "label": "Give first dose of an appropriate antibiotic",
+        "display_subtext": "due to Mastoiditis",
+        "danger": "{{calculates.high_danger_ear()}}",
+        "_rowNum": 42
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "ear_high2",
+        "label": "Give first dose of paracetamol for pain",
+        "display_subtext": "due to Mastoiditis",
+        "danger": "{{calculates.high_danger_ear()}}",
+        "_rowNum": 43
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "ear_med",
+        "label": "Give an antibiotic for 5 days.",
+        "display_subtext": "due to ear infection",
+        "danger": "{{calculates.med_danger_ear()}}",
+        "_rowNum": 44
+      },
+      {
+        "list_name": "treat_now_options",
+        "name": "malnut_high",
+        "label": "Treat the child to prevent low sugar",
+        "display_subtext": "due to severe malnutrition",
+        "danger": "{{calculates.high_danger_malnut()}}",
+        "_rowNum": 46
+      }
+    ],
+    "follow_up": [
+      {
+        "list_name": "follow_up",
+        "name": "diarrhea",
+        "label": "Continue to Breast Feed",
+        "danger": "{{calculates.danger_class_diarrhea()}}",
+        "_rowNum": 48
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malaria_measles",
+        "label": "Follow up after hospital visit",
+        "danger": "{{calculates.severe_classification()}}",
+        "_rowNum": 49
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malaria_measles_mild",
+        "label": "Advise mother when to return immediately",
+        "danger": "{{calculates.med_danger_malaria() == \"danger\" || calculates.med_danger_pneumonia() == \"danger\" || calculates.low_danger_pneumonia() == \"danger\"  || calculates.med_danger_malaria() == \"danger\" || calculates.low_danger_malaria() == \"danger\" || calculates.med_danger_dehydration() == \"danger\" || calculates.low_danger_dehydration() == \"danger\" || calculates.med_danger_malnut() == \"danger\" || calculates.med_danger_anemia() == \"danger\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 50
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_med",
+        "label": "If wheezing (even if it disappeared after rapidly acting bronchodilator) give an inhaled bronhodilator for 5 days",
+        "display_subtext": "due to pneumonia",
+        "danger": "{{calculates.med_danger_pneumonia()}}",
+        "_rowNum": 52
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_med2",
+        "label": "Soothe the throat and relieve the cough with a safe remedy",
+        "danger": "{{calculates.med_danger_pneumonia()}}",
+        "_rowNum": 53
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_med3",
+        "label": "If coughing for more than 3 weeks or if having recurrent wheezing, refer for assessment for TB or asthma",
+        "danger": "{{calculates.med_danger_pneumonia()}}",
+        "_rowNum": 54
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_med5",
+        "label": "Follow up in 2 days",
+        "danger": "{{calculates.med_danger_pneumonia()}}",
+        "_rowNum": 55
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_low",
+        "label": "If wheezing (even if it disappeared after rapidly acting bronchodilator) give an inhaled bronhodilator for 5 days",
+        "danger": "{{calculates.low_danger_pneumonia()}}",
+        "_rowNum": 56
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_low2",
+        "label": "Soothe the throat and relieve the cough with a safe remedy",
+        "danger": "{{calculates.low_danger_pneumonia()}}",
+        "_rowNum": 57
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_low3",
+        "label": "If coughing for more than 3 weeks or if having recurrent wheezing, refer for assessment for TB or asthma",
+        "danger": "{{calculates.low_danger_pneumonia()}}",
+        "_rowNum": 58
+      },
+      {
+        "list_name": "follow_up",
+        "name": "pneumonia_low5",
+        "label": "Follow up in 5 days if not improving",
+        "danger": "{{calculates.low_danger_pneumonia()}}",
+        "_rowNum": 59
+      },
+      {
+        "list_name": "follow_up",
+        "name": "ear_med",
+        "label": "Give paracetamol for pain",
+        "danger": "{{calculates.med_danger_ear()}}",
+        "_rowNum": 61
+      },
+      {
+        "list_name": "follow_up",
+        "name": "ear_med2",
+        "label": "Dry the ear by wicking",
+        "danger": "{{calculates.med_danger_ear()}}",
+        "_rowNum": 62
+      },
+      {
+        "list_name": "follow_up",
+        "name": "ear_med3",
+        "label": "Follow up in 5 days",
+        "danger": "{{calculates.med_danger_ear()}}",
+        "_rowNum": 63
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malaria_med2",
+        "label": "Follow up in 2 days if fever persists",
+        "danger": "{{calculates.med_danger_malaria()}}",
+        "_rowNum": 65
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malaria_med3",
+        "label": "If fever is present every day for more than 7 days, refer for assesment",
+        "danger": "{{calculates.med_danger_malaria()}}",
+        "_rowNum": 66
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malaria_low2",
+        "label": "Follow up in 2 days if fever persists",
+        "danger": "{{calculates.low_danger_malaria()}}",
+        "_rowNum": 67
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malaria_low3",
+        "label": "If fever is present every day for more than 7 days, refer for assesment",
+        "danger": "{{calculates.low_danger_malaria()}}",
+        "_rowNum": 68
+      },
+      {
+        "list_name": "follow_up",
+        "name": "measles_med",
+        "label": "If mouth ulcers, treat with gentian violet",
+        "danger": "{{calculates.med_danger_measles()}}",
+        "_rowNum": 70
+      },
+      {
+        "list_name": "follow_up",
+        "name": "measles_med2",
+        "label": "Follow up in 2 days",
+        "danger": "{{calculates.med_danger_measles()}}",
+        "_rowNum": 71
+      },
+      {
+        "list_name": "follow_up",
+        "name": "measles_low",
+        "label": "Give Vitamin A treatment",
+        "danger": "{{calculates.low_danger_measles()}}",
+        "_rowNum": 72
+      },
+      {
+        "list_name": "follow_up",
+        "name": "dehydration_high_only",
+        "label": "Give fluid for severe dehydration",
+        "danger": "{{calculates.high_danger_dehydration() == \"danger\" && calculates.severe_classification() == \"good\" ? \"danger\" : \"good\"}}",
+        "_rowNum": 74
+      },
+      {
+        "list_name": "follow_up",
+        "name": "dehydration_med",
+        "label": "Give fluid, zinc supplements, and food for some dehydration",
+        "danger": "{{calculates.med_danger_dehydration() }}",
+        "_rowNum": 75
+      },
+      {
+        "list_name": "follow_up",
+        "name": "dehydration_med3",
+        "label": "Follow up in 5 days if not improving",
+        "danger": "{{calculates.med_danger_dehydration() }}",
+        "_rowNum": 76
+      },
+      {
+        "list_name": "follow_up",
+        "name": "dehydration_low",
+        "label": "Give fluid, zinc supplements, and food to treat diarrhea at home",
+        "danger": "{{calculates.low_danger_dehydration()}}",
+        "_rowNum": 77
+      },
+      {
+        "list_name": "follow_up",
+        "name": "dehydration_low3",
+        "label": "Follow up in 5 days if not improving",
+        "danger": "{{calculates.low_danger_dehydration()}}",
+        "_rowNum": 78
+      },
+      {
+        "list_name": "follow_up",
+        "name": "dysentry",
+        "label": "Follow up in 2 days",
+        "danger": "{{calculates.danger_dysentry()}}",
+        "_rowNum": 85
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malnut_med",
+        "label": "Asses the child's feeding and counsel the mother on feeding according o the feeding recommendations",
+        "danger": "{{calculates.med_danger_malnut()}}",
+        "_rowNum": 87
+      },
+      {
+        "list_name": "follow_up",
+        "name": "malnut_med3",
+        "label": "Follow up in 30 days",
+        "danger": "{{calculates.med_danger_malnut()}}",
+        "_rowNum": 88
+      },
+      {
+        "list_name": "follow_up",
+        "name": "anemia_med",
+        "label": "Give Iron",
+        "danger": "{{calculates.med_danger_anemia()}}",
+        "_rowNum": 90
+      },
+      {
+        "list_name": "follow_up",
+        "name": "anemia_med2",
+        "label": "Give oral antimalarial if high malaria risk",
+        "danger": "{{calculates.med_danger_anemia()}}",
+        "_rowNum": 91
+      },
+      {
+        "list_name": "follow_up",
+        "name": "anemia_med3",
+        "label": "Give mebendazole if child is 1 year or older and has not had a dose in the previous six months",
+        "danger": "{{calculates.med_danger_anemia()}}",
+        "_rowNum": 92
+      },
+      {
+        "list_name": "follow_up",
+        "name": "anemia_med5",
+        "label": "Follow up in 14 days",
+        "danger": "{{calculates.med_danger_anemia()}}",
+        "_rowNum": 93
+      }
+    ],
+    "follow up": [
+      {
+        "list_name": "follow up",
+        "name": "diarrhea_high",
+        "label": "Follow up after hospital visit",
+        "danger": "{{calculates.high_danger_diarrhea()}}",
+        "_rowNum": 80
+      },
+      {
+        "list_name": "follow up",
+        "name": "diarrhea_med",
+        "label": "Advise the mother on feeding a child who has persistent diarrhea",
+        "danger": "{{calculates.med_danger_diarrhea()}}",
+        "_rowNum": 81
+      },
+      {
+        "list_name": "follow up",
+        "name": "diarrhea_med2",
+        "label": "Give multivitamins and minerals (including zinc) for 14 days",
+        "danger": "{{calculates.med_danger_diarrhea()}}",
+        "_rowNum": 82
+      },
+      {
+        "list_name": "follow up",
+        "name": "diarrhea_med3",
+        "label": "Follow up in 5 days",
+        "danger": "{{calculates.med_danger_diarrhea()}}",
+        "_rowNum": 83
+      }
+    ]
+  },
+  "settings": [
+    {
+      "setting": "form_id",
+      "value": "adaptiveIMCI_commnunity",
+      "_rowNum": 2
+    },
+    {
+      "setting": "table_id",
+      "value": "adaptiveIMCI",
+      "_rowNum": 3
+    },
+    {
+      "setting": "form_version",
+      "value": 0.6,
+      "_rowNum": 4
+    },
+    {
+      "setting": "form_title",
+      "value": "Adaptive IMCI",
+      "_rowNum": 5
+    },
+    {
+      "setting": "form_subtitle",
+      "value": "Community Version",
+      "_rowNum": 6
+    }
+  ],
+  "model": {
+    "patient_name": {
+      "type": "string"
+    },
+    "patient_age": {
+      "type": "string"
+    },
+    "patient_weight": {
+      "type": "string"
+    },
+    "initial_visit": {
+      "type": "string"
+    },
+    "drink": {
+      "type": "string"
+    },
+    "vomit": {
+      "type": "string"
+    },
+    "convulsions": {
+      "type": "string"
+    },
+    "cough": {
+      "type": "string"
+    },
+    "diarrhea": {
+      "type": "string"
+    },
+    "measles": {
+      "type": "string"
+    },
+    "fever": {
+      "type": "string"
+    },
+    "cough_days": {
+      "type": "integer"
+    },
+    "breath_rate": {
+      "type": "integer"
+    },
+    "indraw_stridor_wheezing": {
+      "type": "string"
+    },
+    "diarrhea_days": {
+      "type": "integer"
+    },
+    "diarrhea_blood": {
+      "type": "string"
+    },
+    "diarrhea_lethargic": {
+      "type": "string"
+    },
+    "diarrhea_restless": {
+      "type": "string"
+    },
+    "diarrhea_drink_properly": {
+      "type": "string"
+    },
+    "diarrhea_thirsty": {
+      "type": "string"
+    },
+    "diarrhea_pinch": {
+      "type": "string"
+    },
+    "diarrhea_sunken_eyes": {
+      "type": "string"
+    },
+    "malaria_risk": {
+      "type": "string"
+    },
+    "fever_days": {
+      "type": "integer"
+    },
+    "fever_persistent": {
+      "type": "string"
+    },
+    "measles_before": {
+      "type": "string"
+    },
+    "measles_stiffneck": {
+      "type": "string"
+    },
+    "measles_signs": {
+      "type": "string"
+    },
+    "measles_ulcers": {
+      "type": "string"
+    },
+    "measles_eyedischarge": {
+      "type": "string"
+    },
+    "measles_eyeclouding": {
+      "type": "string"
+    },
+    "ear_problem": {
+      "type": "string"
+    },
+    "ear_pain": {
+      "type": "string"
+    },
+    "ear_tender": {
+      "type": "string"
+    },
+    "ear_discharge": {
+      "type": "string"
+    },
+    "malnut_wasting": {
+      "type": "string"
+    },
+    "malnut_oedema": {
+      "type": "string"
+    },
+    "malnut_lowweight": {
+      "type": "string"
+    },
+    "anemia_pallor": {
+      "type": "string"
+    },
+    "pallor_severity": {
+      "type": "string"
+    },
+    "Immediate_Action_List": {
+      "type": "array",
+      "isPersisted": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "followUp": {
+      "type": "array",
+      "isPersisted": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
