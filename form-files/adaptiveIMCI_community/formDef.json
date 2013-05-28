@@ -466,8 +466,9 @@
       ]
     },
     {
-      "type": "label_malnut_anemia_end",
-      "_rowNum": 76
+      "type": "label",
+      "_rowNum": 76,
+      "param": "malnut_anemia_end"
     },
     {
       "type": "menu",
