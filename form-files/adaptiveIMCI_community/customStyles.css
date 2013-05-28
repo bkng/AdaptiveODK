@@ -13,24 +13,28 @@
 .menu-button{
 	padding: 5px;
 	background-color: #FAFAFA;
-	height: 80px;
 	border-bottom: 1px solid #ABABAB;
+	clear: both;
 }
 
-.menu-button:hover{
+.menu-button:active{
 	background-color: #CBCBCB;
 }
 
+.clear-div{
+	clear: both;
+}
 .menu-right{
 	float: right;
-	margin: 25px 10px 10px 10px;
+	padding: 10px 5px;;
 	text-align: right;
   font-size: 1.25em;
   width: 20%;
 }
 .menu-left{
+	padding: 5px 5px;
+	width: 70%;
 	float: left;
-	margin: 15px 10px 10px 10px;
 }
 
 .menu-left .menu-text{
@@ -43,15 +47,12 @@
 	display: block;
 	font-style: italic;
 }
-
 .danger{
 	color: red;
 }
-
 .warning{
-	color: yellow;
+	color: #FFA500;
 }
-
 .good{
 	color: green;
 }
