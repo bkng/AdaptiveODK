@@ -21,6 +21,7 @@
           "type": "text",
           "name": "patient_age",
           "label": "How old is the child? (months)",
+          "required": true,
           "_rowNum": 5
         },
         {
