@@ -21,6 +21,7 @@
           "type": "text",
           "name": "patient_age",
           "label": "How old is the child? (months)",
+          "required": true,
           "_rowNum": 5
         },
         {
@@ -42,12 +43,17 @@
     {
       "type": "label",
       "_rowNum": 9,
+      "param": "demographics_end"
+    },
+    {
+      "type": "label",
+      "_rowNum": 10,
       "param": "danger"
     },
     {
       "type": "screen",
       "section": "Danger Signs",
-      "_rowNum": 10,
+      "_rowNum": 11,
       "prompts": [
         {
           "type": "select_one",
@@ -55,7 +61,7 @@
           "label": "Is the child able to drink or breastfeed?",
           "appearance": "inline",
           "required": true,
-          "_rowNum": 11,
+          "_rowNum": 12,
           "param": "yesno"
         },
         {
@@ -64,7 +70,7 @@
           "label": "Does the child vomit everything?",
           "appearance": "inline",
           "required": true,
-          "_rowNum": 12,
+          "_rowNum": 13,
           "param": "yesno"
         },
         {
@@ -73,7 +79,7 @@
           "label": "Has the child had convulsions?",
           "appearance": "inline",
           "required": true,
-          "_rowNum": 13,
+          "_rowNum": 14,
           "param": "yesno"
         }
       ]
@@ -81,7 +87,7 @@
     {
       "type": "screen",
       "section": "General Symptoms",
-      "_rowNum": 15,
+      "_rowNum": 16,
       "prompts": [
         {
           "type": "select_one",
@@ -89,7 +95,7 @@
           "label": "Does the child have a cough or have difficulty breathing?",
           "appearance": "inline",
           "required": true,
-          "_rowNum": 16,
+          "_rowNum": 17,
           "param": "yesno"
         },
         {
@@ -98,7 +104,7 @@
           "label": "Does the child have diarrhea?",
           "appearance": "inline",
           "required": true,
-          "_rowNum": 17,
+          "_rowNum": 18,
           "param": "yesno"
         },
         {
@@ -107,7 +113,7 @@
           "label": "Has the child had measles in the last three months?",
           "appearance": "inline",
           "required": true,
-          "_rowNum": 18,
+          "_rowNum": 19,
           "param": "yesno"
         },
         {
@@ -116,69 +122,89 @@
           "label": "Does the child have a fever?",
           "appearance": "inline",
           "required": true,
-          "_rowNum": 19,
+          "_rowNum": 20,
           "param": "yesno"
         }
       ]
     },
     {
       "type": "label",
-      "_rowNum": 21,
+      "_rowNum": 22,
+      "param": "danger_end"
+    },
+    {
+      "type": "goto",
+      "condition": "selected(data('cough'), 'no')",
+      "_rowNum": 23,
+      "param": "pneumonia_end"
+    },
+    {
+      "type": "label",
+      "_rowNum": 24,
       "param": "pneumonia"
     },
     {
       "type": "screen",
       "section": "Pneumonia",
-      "condition": "selected(data('cough'), 'yes')",
-      "_rowNum": 22,
+      "_rowNum": 25,
       "prompts": [
         {
           "type": "integer",
           "name": "cough_days",
           "label": "How long has the child had a cough? (days)",
           "appearance": "inline",
-          "_rowNum": 23
+          "_rowNum": 26
         },
         {
           "type": "integer",
           "name": "breath_rate",
           "label": "How many breaths does the child take in one minute?",
-          "_rowNum": 24
+          "_rowNum": 27
         },
         {
           "type": "select_one",
           "name": "indraw_stridor_wheezing",
           "label": "Does thie child show chest indrawing, stridor, or wheezing?",
           "appearance": "inline",
-          "_rowNum": 25,
+          "_rowNum": 28,
           "param": "yesno"
         }
       ]
     },
     {
       "type": "label",
-      "_rowNum": 27,
+      "_rowNum": 30,
+      "param": "pneumonia_end"
+    },
+    {
+      "type": "goto",
+      "condition": "selected(data('diarrhea'), 'no')",
+      "_rowNum": 31,
+      "param": "diarrhea_end"
+    },
+    {
+      "type": "label",
+      "_rowNum": 32,
       "param": "diarrhea"
     },
     {
       "type": "screen",
       "section": "Diarrhea",
-      "condition": "selected(data('diarrhea'), 'yes')",
-      "_rowNum": 28,
+      "_rowNum": 33,
       "prompts": [
         {
           "type": "integer",
           "name": "diarrhea_days",
           "label": "How long has the child had diarrhea? (days)",
           "appearance": "inline",
-          "_rowNum": 29
+          "_rowNum": 34
         },
         {
           "type": "select_one",
           "name": "diarrhea_blood",
           "label": "Is there blood in the stool?",
           "appearance": "inline",
-          "_rowNum": 30,
+          "_rowNum": 35,
           "param": "yesno"
         },
         {
@@ -186,7 +212,7 @@
           "name": "diarrhea_lethargic",
           "label": "Is the child lethargic or unconscnious?",
           "appearance": "inline",
-          "_rowNum": 31,
+          "_rowNum": 36,
           "param": "yesno"
         },
         {
@@ -194,7 +220,7 @@
           "name": "diarrhea_restless",
           "label": "Is the child restless and irritable?",
           "appearance": "inline",
-          "_rowNum": 32,
+          "_rowNum": 37,
           "param": "yesno"
         },
         {
@@ -202,7 +228,7 @@
           "name": "diarrhea_drink_properly",
           "label": "Offer the child fluids, are they able to drink properly?",
           "appearance": "inline",
-          "_rowNum": 33,
+          "_rowNum": 38,
           "param": "yesno"
         },
         {
@@ -210,7 +236,7 @@
           "name": "diarrhea_thirsty",
           "label": "Does the child drink eagerly, seem very thirsty?",
           "appearance": "inline",
-          "_rowNum": 34,
+          "_rowNum": 39,
           "param": "yesno"
         },
         {
@@ -218,7 +244,7 @@
           "name": "diarrhea_pinch",
           "label": "Pinch the child's skin, does the pinch go back very slowly?",
           "appearance": "inline",
-          "_rowNum": 35,
+          "_rowNum": 40,
           "param": "yesno"
         },
         {
@@ -226,28 +252,38 @@
           "name": "diarrhea_sunken_eyes",
           "label": "Does the child have sunken eyes?",
           "appearance": "inline",
-          "_rowNum": 36,
+          "_rowNum": 41,
           "param": "yesno"
         }
       ]
     },
     {
       "type": "label",
-      "_rowNum": 38,
+      "_rowNum": 43,
+      "param": "diarrhea_end"
+    },
+    {
+      "type": "goto",
+      "condition": "selected(data('measles'), 'no') && selected(data('fever'), 'no')",
+      "_rowNum": 44,
+      "param": "malaria_measles_end"
+    },
+    {
+      "type": "label",
+      "_rowNum": 45,
       "param": "malaria_measles"
     },
     {
       "type": "screen",
       "section": "Measles & Malaria",
-      "condition": "selected(data('measles'), 'yes') || selected(data('fever'), 'yes')",
-      "_rowNum": 39,
+      "_rowNum": 46,
       "prompts": [
         {
           "type": "select_one",
           "name": "malaria_risk",
           "label": "Are you in an area at high risk for malaia?",
           "appearance": "inline",
-          "_rowNum": 40,
+          "_rowNum": 47,
           "param": "yesno"
         },
         {
@@ -255,14 +291,14 @@
           "name": "fever_days",
           "label": "How long has the child had a fever? (days)",
           "appearance": "inline",
-          "_rowNum": 41
+          "_rowNum": 48
         },
         {
           "type": "select_one",
           "name": "fever_persistent",
           "label": "Has fever been present every day?",
           "appearance": "inline",
-          "_rowNum": 42,
+          "_rowNum": 49,
           "param": "yesno"
         },
         {
@@ -270,7 +306,7 @@
           "name": "measles_before",
           "label": "Has the child had measles within the last 3 months?",
           "appearance": "inline",
-          "_rowNum": 43,
+          "_rowNum": 50,
           "param": "yesno"
         },
         {
@@ -278,7 +314,7 @@
           "name": "measles_stiffneck",
           "label": "Does the child have a stiff neck?",
           "appearance": "inline",
-          "_rowNum": 44,
+          "_rowNum": 51,
           "param": "yesno"
         },
         {
@@ -286,7 +322,7 @@
           "name": "measles_signs",
           "label": "Does the child have a rash, runny nose, and/or red eyes?",
           "appearance": "inline",
-          "_rowNum": 45,
+          "_rowNum": 52,
           "param": "yesno"
         }
       ]
@@ -295,14 +331,14 @@
       "type": "screen",
       "section": "Measles & Malaria",
       "condition": "selected(data('measles_before'), 'yes')",
-      "_rowNum": 47,
+      "_rowNum": 54,
       "prompts": [
         {
           "type": "select_one",
           "name": "measles_ulcers",
           "label": "Does the child have mouth ulcers?",
           "appearance": "inline",
-          "_rowNum": 48,
+          "_rowNum": 55,
           "param": "yesno"
         },
         {
@@ -310,57 +346,13 @@
           "name": "measles_eyedischarge",
           "label": "Does the child have pus draining from his/her eye?",
           "appearance": "inline",
-          "_rowNum": 49,
+          "_rowNum": 56,
           "param": "yesno"
         },
         {
           "type": "select_one",
           "name": "measles_eyeclouding",
           "label": "Are the child's eyes cloudy?",
-          "appearance": "inline",
-          "_rowNum": 50,
-          "param": "yesno"
-        }
-      ]
-    },
-    {
-      "type": "label",
-      "_rowNum": 52,
-      "param": "ear"
-    },
-    {
-      "type": "screen",
-      "section": "Ear Problems",
-      "_rowNum": 53,
-      "prompts": [
-        {
-          "type": "select_one",
-          "name": "ear_problem",
-          "label": "Does the child have an ear problem?",
-          "appearance": "inline",
-          "_rowNum": 54,
-          "param": "yesno"
-        },
-        {
-          "type": "select_one",
-          "name": "ear_pain",
-          "label": "Is there an ear pain?",
-          "appearance": "inline",
-          "_rowNum": 55,
-          "param": "yesno"
-        },
-        {
-          "type": "select_one",
-          "name": "ear_tender",
-          "label": "Is there tender swelling behind the ear?",
-          "appearance": "inline",
-          "_rowNum": 56,
-          "param": "yesno"
-        },
-        {
-          "type": "select_one",
-          "name": "ear_discharge",
-          "label": "Is there an ear discharge?",
           "appearance": "inline",
           "_rowNum": 57,
           "param": "yesno"
@@ -370,49 +362,46 @@
     {
       "type": "label",
       "_rowNum": 59,
-      "param": "malnut_anemia"
+      "param": "malaria_measles_end"
+    },
+    {
+      "type": "label",
+      "_rowNum": 60,
+      "param": "ear"
     },
     {
       "type": "screen",
-      "section": "Malnutrition & Anemia",
-      "_rowNum": 60,
+      "section": "Ear Problems",
+      "_rowNum": 61,
       "prompts": [
         {
           "type": "select_one",
-          "name": "malnut_wasting",
-          "label": "Is the child visibly wasting?",
-          "appearance": "inline",
-          "_rowNum": 61,
-          "param": "yesno"
-        },
-        {
-          "type": "select_one",
-          "name": "malnut_oedema",
-          "label": "Does the show oedema of both feet?",
+          "name": "ear_problem",
+          "label": "Does the child have an ear problem?",
           "appearance": "inline",
           "_rowNum": 62,
           "param": "yesno"
         },
         {
           "type": "select_one",
-          "name": "malnut_lowweight",
-          "label": "Is the child's weight low for his/her age?",
+          "name": "ear_pain",
+          "label": "Is there an ear pain?",
           "appearance": "inline",
           "_rowNum": 63,
           "param": "yesno"
         },
         {
           "type": "select_one",
-          "name": "anemia_pallor",
-          "label": "Does the child have palmar pallor?",
+          "name": "ear_tender",
+          "label": "Is there tender swelling behind the ear?",
           "appearance": "inline",
           "_rowNum": 64,
           "param": "yesno"
         },
         {
           "type": "select_one",
-          "name": "pallor_severity",
-          "label": "Is the palmar pallor severe?",
+          "name": "ear_discharge",
+          "label": "Is there an ear discharge?",
           "appearance": "inline",
           "_rowNum": 65,
           "param": "yesno"
@@ -420,49 +409,110 @@
       ]
     },
     {
+      "type": "label",
+      "_rowNum": 67,
+      "param": "ear_end"
+    },
+    {
+      "type": "label",
+      "_rowNum": 68,
+      "param": "malnut_anemia"
+    },
+    {
+      "type": "screen",
+      "section": "Malnutrition & Anemia",
+      "_rowNum": 69,
+      "prompts": [
+        {
+          "type": "select_one",
+          "name": "malnut_wasting",
+          "label": "Is the child visibly wasting?",
+          "appearance": "inline",
+          "_rowNum": 70,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "malnut_oedema",
+          "label": "Does the show oedema of both feet?",
+          "appearance": "inline",
+          "_rowNum": 71,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "malnut_lowweight",
+          "label": "Is the child's weight low for his/her age?",
+          "appearance": "inline",
+          "_rowNum": 72,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "anemia_pallor",
+          "label": "Does the child have palmar pallor?",
+          "appearance": "inline",
+          "_rowNum": 73,
+          "param": "yesno"
+        },
+        {
+          "type": "select_one",
+          "name": "pallor_severity",
+          "label": "Is the palmar pallor severe?",
+          "appearance": "inline",
+          "_rowNum": 74,
+          "param": "yesno"
+        }
+      ]
+    },
+    {
+      "type": "label_malnut_anemia_end",
+      "_rowNum": 76
+    },
+    {
       "type": "menu",
       "section": "Summary",
       "name": "menu",
       "display_title": "calculates.get_patient_name()",
-      "_rowNum": 67,
+      "_rowNum": 77,
       "param": "menu_options"
     },
     {
       "type": "screen",
       "section": "Treatment",
       "name": "treatment",
-      "_rowNum": 68,
+      "_rowNum": 78,
       "prompts": [
         {
           "type": "note",
           "name": "treatment_intro",
           "label": "We are sorry that your child is sick. Based on your answers, we recommend the following treatments:",
-          "_rowNum": 69
+          "_rowNum": 79
         },
         {
           "type": "note",
           "name": "treat_now",
           "label": "Immediate Action:",
-          "_rowNum": 70
+          "_rowNum": 80
         },
         {
           "type": "select_multiple",
           "name": "Immediate_Action_List",
           "choice_filter": "context.danger == \"danger\"",
-          "_rowNum": 71,
+          "_rowNum": 81,
           "param": "treat_now_options"
         },
         {
           "type": "note",
           "name": "References",
           "label": "Follow-Up:",
-          "_rowNum": 72
+          "_rowNum": 82
         },
         {
           "type": "select_multiple",
           "name": "followUp",
           "choice_filter": "context.danger == \"danger\"",
-          "_rowNum": 73,
+          "_rowNum": 83,
           "param": "follow_up"
         }
       ]
@@ -1508,6 +1558,11 @@
       "setting": "form_subtitle",
       "value": "Community Version",
       "_rowNum": 6
+    },
+    {
+      "setting": "font-size",
+      "value": "11pt",
+      "_rowNum": 7
     }
   ],
   "model": {
