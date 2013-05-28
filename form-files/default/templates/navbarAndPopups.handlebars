@@ -4,8 +4,14 @@
             <div class="headerOptBtns">
 				<a class="odk-options-btn" data-role="button"
 				data-icon="gear" data-iconpos="notext" data-inline="true">survey</a>
+				{{#if showMenuButton}}
 				<a class="odk-menu-btn" data-role="button"
 				data-icon="grid" data-iconpos="left" data-inline="true">summary</a>
+				{{/if}}
+				{{#if showSubmenuButton}}
+				<a class="odk-submenu-btn" data-role="button"
+				data-icon="star" data-iconpos="left" data-inline="true">treatment</a>
+				{{/if}}
 			</div>
             <div class="headerNavBtns">
                 <a class="odk-prev-btn
@@ -14,7 +20,6 @@
                 <a class="odk-next-btn
                 {{#unless enableForwardNavigation}}ui-disabled{{/unless}}"
                 data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="true">next</a>
-                
            </div>
         </div>
     {{/if}}

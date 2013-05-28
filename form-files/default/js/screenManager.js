@@ -25,6 +25,7 @@ return Backbone.View.extend({
         "click .odk-prev-btn": "gotoPreviousScreen",
         "click .odk-options-btn": "openOptions",
 		"click .odk-menu-btn": "gotoMenuScreen",
+		"click .odk-submenu-btn": "gotoSubmenuScreen",
         "click .languageMenu": "openLanguagePopup",
         "click .language": "setLanguage",
         "click .ignore-changes-and-exit": "ignoreChanges",
@@ -104,6 +105,7 @@ return Backbone.View.extend({
             showHeader: true,
 			showSubHeader: true,
             showFooter: false,
+			showMenuButton: true,
             enableForwardNavigation: true,
             enableBackNavigation: true,
             enableNavigation: true,
@@ -274,6 +276,24 @@ return Backbone.View.extend({
         evt.stopImmediatePropagation();
 		
 		var prmpt = that.controller.getPromptByName( "menu" );
+        that.controller.setPrompt($.extend({},ctxt,{
+						success:function(){
+							ctxt.failure({message: "Returning to start of form."});
+						}}), prmpt, null);
+        return false;
+    },
+	// TODO: Refactor gotoSubmenuScreen and gotoMenuScreen
+	gotoSubmenuScreen: function(evt) {
+        this.currentPageEl.css('opacity', '.5').fadeTo("fast", 1.0);
+		
+        var that = this;
+        var ctxt = that.controller.newContext(evt);		
+		
+        ctxt.append('screenManager.gotoMenuScreen', ((that.prompt != null) ? ("px: " + that.prompt.promptIdx) : "no current prompt"));
+        evt.stopPropagation();
+        evt.stopImmediatePropagation();
+		
+		var prmpt = that.controller.getPromptByName( "submenu" );
         that.controller.setPrompt($.extend({},ctxt,{
 						success:function(){
 							ctxt.failure({message: "Returning to start of form."});
