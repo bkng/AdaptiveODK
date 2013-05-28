@@ -61,7 +61,7 @@ function(mdl,promptTypes, $, _, formulaFunctions, opendatakit) {
 					ctxt.append("prompts." + that.type + ".postActivate." + outcome,
 								"px: " + that.promptIdx);
 				//	that.updateRenderValue(that.parseSaveValue(that.getValue()));
-					ctxt.success();
+					ctxt.success({showMenuButton: false, showSubmenuButton: true});
 				}});
 						that.renderContext.passiveError = null;
 						if(that.param in that.form.queries) {

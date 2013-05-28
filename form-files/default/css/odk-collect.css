@@ -31,10 +31,16 @@ body {
     float: right;
     /* margin-right: 1em; */
 }
+
 .odk-options-btn {
     float: left;
 }
+
 .odk-menu-btn {
+    float: left;
+}
+
+.odk-submenu-btn {
     float: left;
 }
 
