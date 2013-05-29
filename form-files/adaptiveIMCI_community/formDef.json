@@ -722,77 +722,77 @@
     },
     {
       "name": "severe_classification",
-      "calculation": "calculates.general_danger_level() == \"Present\" || calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_pneumonia() == \"danger\" || calculates.high_danger_diarrhea() == \"danger\" || calculates.high_danger_malaria() == \"danger\"|| calculates.high_danger_measles() == \"danger\" || calculates.high_danger_ear() == \"danger\" || calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\" ? \"danger\" : \"good\"",
+      "calculation": "calculates.general_danger_level() == \"Danger\" || calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_pneumonia() == \"danger\" || calculates.high_danger_diarrhea() == \"danger\" || calculates.high_danger_malaria() == \"danger\"|| calculates.high_danger_measles() == \"danger\" || calculates.high_danger_ear() == \"danger\" || calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\" ? \"danger\" : \"good\"",
       "_rowNum": 51
     },
     {
       "name": "general_danger_level",
-      "calculation": "!calculates.can_drink() || calculates.is_vomiting() ||calculates.has_convulsions() ? \"Present\" : \"Not present\"",
+      "calculation": "!calculates.can_drink() || calculates.is_vomiting() ||calculates.has_convulsions() ? \"Danger\" : \"Not present\"",
       "_rowNum": 53
     },
     {
       "name": "pneumonia_danger_level",
-      "calculation": "calculates.has_cough()? \"Present\" : \"Not present\"",
+      "calculation": "calculates.high_danger_pneumonia() == \"danger\" ? \"Danger\" : calculates.med_danger_pneumonia() == \"danger\" ? \"Present\" : \"Not present\"",
       "_rowNum": 54
     },
     {
       "name": "diarrhea_danger_level",
-      "calculation": "calculates.has_diarrhea()? \"Present\" : \"Not present\"",
+      "calculation": "calculates.high_danger_diarrhea() == \"danger\" ? \"Danger\" :  calculates.med_danger_diarrhea() == \"danger\" ? \"Present\" : \"Not present\"",
       "_rowNum": 55
     },
     {
       "name": "malaria_measles_danger_level",
-      "calculation": "calculates.has_fever()? \"Present\" : \"Not present\"",
+      "calculation": "calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_measles() == \"danger\" ? \"Danger\" :  calculates.med_danger_malaria() == \"danger\" || calculates.med_danger_measles() == \"danger\" ? \"Present\" : \"Not present\"",
       "_rowNum": 56
     },
     {
       "name": "ear_danger_level",
-      "calculation": "calculates .has_ear_problem() || calculates.has_ear_pain() || calculates.has_ear_discharge()? \"Present\" : \"Not present\"",
+      "calculation": "calculates .high_danger_ear() == \"danger\" ? \"Danger\" :  calculates.med_danger_ear() == \"danger\" ? \"Present\" : \"Not present\"",
       "_rowNum": 57
     },
     {
       "name": "malnut_anemia_danger_level",
-      "calculation": "\"TODO\"",
+      "calculation": "calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\" ? \"Danger\" : calculates.med_danger_malnut() == \"danger\" || calculates.med_danger_anemia() == \"danger\" ? \"Present\" : \"Not present\"",
       "_rowNum": 58
     },
     {
       "name": "danger_class_general",
-      "calculation": "calculates.general_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "calculation": "calculates.general_danger_level() == \"Danger\" ? \"danger\" : \"good\"",
       "_rowNum": 59
     },
     {
       "name": "danger_class_pneumonia",
-      "calculation": "calculates.pneumonia_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "calculation": "calculates.high_danger_pneumonia() == \"danger\" ? \"danger\" : calculates.med_danger_pneumonia() == \"danger\" ? \"warning\" : \"good\"",
       "_rowNum": 60
     },
     {
       "name": "danger_class_diarrhea",
-      "calculation": "calculates.diarrhea_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "calculation": "calculates.high_danger_diarrhea() == \"danger\" ? \"danger\" : calculates.med_danger_diarrhea() == \"danger\" ? \"warning\" : \"good\"",
       "_rowNum": 61
     },
     {
       "name": "danger_class_malaria_measles",
-      "calculation": "calculates.malaria_measles_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "calculation": "(calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_measles() == \"danger\") ? \"danger\" : (calculates.med_danger_malaria() == \"danger\" || calculates.med_danger_measles() == \"danger\") ? \"warning\" : \"good\"",
       "_rowNum": 62
     },
     {
       "name": "danger_class_ear",
-      "calculation": "calculates.ear_danger_level() == \"Present\" ? \"danger\" : \"good\"",
+      "calculation": "calculates.high_danger_ear() == \"danger\" ? \"danger\" : calculates.med_danger_ear() == \"danger\" ? \"warning\" : \"good\"",
       "_rowNum": 63
     },
     {
       "name": "danger_class_malnut_anemia",
-      "calculation": "\"TODO\"",
+      "calculation": "(calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\") ? \"danger\" : (calculates.med_danger_malnut() == \"danger\" || calculates.med_danger_anemia() == \"danger\") ? \"warning\" : \"good\"",
       "_rowNum": 64
     },
     {
       "name": "danger_class_see_dr",
-      "calculation": "calculates.general_danger_level() == \"Present\" || calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_measles() == \"danger\" || calculates.high_danger_pneumonia() == \"danger\" || calculates.high_danger_diarrhea() == \"danger\" || calculates.high_danger_ear() ==\"danger\" || calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\" ? \"danger\" : \"good\"",
+      "calculation": "calculates.general_danger_level() == \"Danger\" || calculates.high_danger_malaria() == \"danger\" || calculates.high_danger_measles() == \"danger\" || calculates.high_danger_pneumonia() == \"danger\" || calculates.high_danger_diarrhea() == \"danger\" || calculates.high_danger_ear() ==\"danger\" || calculates.high_danger_malnut() == \"danger\" || calculates.high_danger_anemia() == \"danger\" ? \"danger\" : \"good\"",
       "_rowNum": 66
     },
     {
       "name": "high_danger_malaria",
-      "calculation": "(calculates.has_fever() && (calculates.has_stiffneck() || calculates.general_danger_level() == \"Present\") ) ? \"danger\" : \"good\"",
+      "calculation": "(calculates.has_fever() && (calculates.has_stiffneck() || calculates.general_danger_level() == \"Danger\") ) ? \"danger\" : \"good\"",
       "_rowNum": 67
     },
     {
@@ -807,7 +807,7 @@
     },
     {
       "name": "high_danger_measles",
-      "calculation": "calculates.had_measles() && (calculates.general_danger_level() == \"Present\" || calculates.has_eyeclouding() || calculates.has_ulcers())? \"danger\" : \"good\"",
+      "calculation": "calculates.had_measles() && (calculates.general_danger_level() == \"Danger\" || calculates.has_eyeclouding() || calculates.has_ulcers())? \"danger\" : \"good\"",
       "_rowNum": 71
     },
     {
@@ -827,7 +827,7 @@
     },
     {
       "name": "high_danger_pneumonia",
-      "calculation": "calculates.has_cough() && (calculates.general_danger_level() == \"Present\" || calculates.has_indrawing_stridor_wheezing()) ? \"danger\" : \"good\"",
+      "calculation": "calculates.has_cough() && (calculates.general_danger_level() == \"Danger\" || calculates.has_indrawing_stridor_wheezing()) ? \"danger\" : \"good\"",
       "_rowNum": 76
     },
     {
