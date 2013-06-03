@@ -869,8 +869,6 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
 		var formValue = (this.$('form').serializeArray());
         this.setValue($.extend({}, ctxt, {
             success: function() {
-                that.updateRenderValue(formValue);
-                that.render();
                 ctxt.success();
             }
         }), this.generateSaveValue(formValue));
