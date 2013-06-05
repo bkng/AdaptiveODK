@@ -413,23 +413,23 @@ promptTypes.instances = promptTypes.base.extend({
         "click .createInstance": "createInstance",
         "click .scanInstance": "scanCode"
     },
-		//TODO loading the databaseIO object should be moved to builder.js
-		//default databaseIO object
-		databaseIO : {
-				deserializeDatabase: function(dbstring){
-						return dbstring;
-				},	
-				serializeDatabase : function(dbstring){
-						return dbstring;
-				}
-		},
-		//TODO experimental code -----------------------------------
+    //TODO loading the databaseIO object should be moved to builder.js
+    //default databaseIO object
+    databaseIO : {
+        deserializeDatabase: function(dbstring){
+            return dbstring;
+        },  
+        serializeDatabase : function(dbstring){
+            return dbstring;
+        }
+    },
+    //TODO experimental code -----------------------------------
      extractDataValue: function(jsonObject) {
         return jsonObject.result.SCAN_RESULT;
     },
-		afterInitialize : function(ctxt){
-			this.loadCustomDatabaseIO(ctxt);
-		},
+    afterInitialize : function(ctxt){
+      this.loadCustomDatabaseIO(ctxt);
+    },
     postActivate: function(ctxt) {
         var that = this;
         ctxt.append("prompts." + this.type + ".postActivate", "px: " + this.promptIdx);
@@ -451,7 +451,7 @@ promptTypes.instances = promptTypes.base.extend({
                 });
                 ctxt.success({
                     showHeader: false,
-										showSubHeader: false,
+                    showSubHeader: false,
                     enableNavigation:false,
                     showFooter:false
                 });
@@ -490,7 +490,7 @@ promptTypes.instances = promptTypes.base.extend({
         evt.stopPropagation(true);
         var ctxt = controller.newContext(evt);
         var platInfo = opendatakit.getPlatformInfo();
-				var barcode_intent = 'com.google.zxing.client.android.SCAN';
+        var barcode_intent = 'com.google.zxing.client.android.SCAN';
         $('#block-ui').show().on('swipeleft swiperight click', function(evt) {
             evt.stopPropagation();
         });
@@ -524,8 +524,8 @@ promptTypes.instances = promptTypes.base.extend({
             if (jsonObject.status == -1 ) { // Activity.RESULT_OK
                 ctxt.append("prompts." + that.type + 'getCallback.actionFn.resultOK', "px: " + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action);
                 if (jsonObject.result != null) {
-                	var code = that.extractDataValue(jsonObject);
-									that.loadInstanceFromBarcode(ctxt,code);
+                  var code = that.extractDataValue(jsonObject);
+                  that.loadInstanceFromBarcode(ctxt,code);
                 }
             } else {
                 ctxt.append("prompts." + that.type + 'getCallback.actionFn.failureOutcome', "px: " + that.promptIdx + " promptPath: " + promptPath + " internalPromptContext: " + internalPromptContext + " action: " + action);
@@ -539,19 +539,26 @@ promptTypes.instances = promptTypes.base.extend({
           ctxt.append("prompts." + this.type + ".scanInstance", "px: " + this.promptIdx);
           var savedVals = this.databaseIO.deserializeDatabase(newData);
           var instanceId = savedVals.instanceId;
-					database.initializeInstance(ctxt,instanceId,{});
-          //TODO what todo with tableId???
-          var kvMap = {};
-          kvMap.instanceName = {value: savedVals.instanceName, isInstanceMetadata: true};
-          for (var key in savedVals.answers){
-            if(savedVals.answers[key] != null && key != 'calculates'){//this shows up in the model for some reason
-              console.log(key + " : " + savedVals.answers[key]);
-              kvMap[key] = {value: savedVals.answers[key], isInstanceMetaData: false};
+          //TODO chain the contexts together
+          database.initializeInstance($.extend({},ctxt,{
+            success : function(){
+              //TODO what todo with tableId???
+              var kvMap = {};
+              kvMap.instanceName = {value: savedVals.instanceName, isInstanceMetadata: true};
+              for (var key in savedVals.answers){
+                if(savedVals.answers[key] != null && key != 'calculates'){//this shows up in the model for some reason
+                  console.log(key + " : " + savedVals.answers[key]);
+                  kvMap[key] = {value: savedVals.answers[key], isInstanceMetaData: false};
+                }
+              }
+              database.putInstanceDataKeyValueMap($.extend({},ctxt,{ 
+                success : function(){
+                  console.log(kvMap);
+                  opendatakit.openNewInstanceId(ctxt, instanceId);
+                }
+              }), instanceId, kvMap);
             }
-          }
-          database.putInstanceDataKeyValueMap(ctxt, instanceId, kvMap);
-          console.log(kvMap);
-          opendatakit.openNewInstanceId(ctxt, instanceId);
+          }),instanceId,{});
         }
         catch(err){
           console.log(err);
@@ -559,19 +566,19 @@ promptTypes.instances = promptTypes.base.extend({
           return;
         }
     },
-		//This tries to load any user defined database serialization functions
-		//TODO: The approach to getting the current form path might need to change.
-		loadCustomDatabaseIO: function(ctxt){
-				var that = this;
+    //This tries to load any user defined database serialization functions
+    //TODO: The approach to getting the current form path might need to change.
+    loadCustomDatabaseIO: function(ctxt){
+        var that = this;
         require([opendatakit.getCurrentFormPath() + 'customDatabaseIO.js'], function (customDatabaseIO) {
-					that.databaseIO.serializeDatabase = customDatabaseIO.serializeDatabase; 
-					that.databaseIO.deserializeDatabase = customDatabaseIO.deserializeDatabase; 
-				},
-				function(err){
-					console.error("could not load customDatabaseIO.js");	
-					console.log(err);
-				});
-		}
+          that.databaseIO.serializeDatabase = customDatabaseIO.serializeDatabase; 
+          that.databaseIO.deserializeDatabase = customDatabaseIO.deserializeDatabase; 
+        },
+        function(err){
+          console.error("could not load customDatabaseIO.js");  
+          console.log(err);
+        });
+    }
 });
 promptTypes.hierarchy = promptTypes.base.extend({
     type:"hierarchy",
@@ -776,12 +783,12 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
     },
     postActivate: function(ctxt) {
         var that = this;
-				var newctxt = $.extend({}, ctxt, {success: function(outcome) {
-					ctxt.append("prompts." + that.type + ".postActivate." + outcome,
-								"px: " + that.promptIdx);
-				that.updateRenderValue(that.parseSaveValue(that.getValue()));
-				ctxt.success();
-				}});
+        var newctxt = $.extend({}, ctxt, {success: function(outcome) {
+          ctxt.append("prompts." + that.type + ".postActivate." + outcome,
+                "px: " + that.promptIdx);
+        that.updateRenderValue(that.parseSaveValue(that.getValue()));
+        ctxt.success();
+        }});
         var populateChoicesViaQuery = function(query, newctxt){
             var queryUri = query.uri();
             if(queryUri.search('//') < 0){
