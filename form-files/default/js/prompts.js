@@ -91,7 +91,7 @@ promptTypes.base = Backbone.View.extend({
         this.renderContext.required = this.required;
         this.renderContext.appearance = this.appearance;
         this.renderContext.withOther = this.withOther;
-    this.renderContext.section = this.section;
+		this.renderContext.section = this.section;
         //It's probably not good to get data like this in initialize
         //Maybe it would be better to use handlebars helpers to get metadata?
         this.renderContext.form_title = opendatakit.getSettingValue('form_title');
@@ -772,14 +772,6 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
             this.$('.grid-select-item.ui-bar-e').removeClass('ui-bar-e').addClass('ui-bar-c');
             this.$('input:checked').closest('.grid-select-item').addClass('ui-bar-e');
         }
-        var formValue = (this.$('form').serializeArray());
-        this.setValue($.extend({}, ctxt, {
-            success: function() {
-                that.updateRenderValue(formValue);
-                that.render();
-                ctxt.success();
-            }
-        }), this.generateSaveValue(formValue));
     },
     postActivate: function(ctxt) {
         var that = this;
@@ -878,6 +870,15 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
         var ctxt = controller.newContext(evt);
         ctxt.append("prompts." + this.type + ".deselect", "px: " + this.promptIdx);
         this.$('input:checked').prop('checked', false).change();
+    },
+	beforeMove: function(ctxt) {
+        var that = this;
+		var formValue = (this.$('form').serializeArray());
+        this.setValue($.extend({}, ctxt, {
+            success: function() {
+                ctxt.success();
+            }
+        }), this.generateSaveValue(formValue));
     }
 });
 promptTypes.select_one = promptTypes.select.extend({
@@ -979,23 +980,6 @@ promptTypes.input_type = promptTypes.text = promptTypes.base.extend({
         that.insideMutex = true;
         var ctxt = controller.newContext(evt);
         ctxt.append("prompts." + that.type + ".modification", "px: " + that.promptIdx);
-        var renderContext = that.renderContext;
-        that.setValue($.extend({}, ctxt, {
-            success: function() {
-                renderContext.value = value;
-                renderContext.invalid = !that.validateValue();
-                that.insideMutex = false;
-                that.debouncedRender();
-                ctxt.success();
-            },
-            failure: function(m) {
-                renderContext.value = value;
-                renderContext.invalid = true;
-                that.insideMutex = false;
-                that.debouncedRender();
-                ctxt.failure(m);
-            }
-        }), (value.length === 0 ? null : value));
     },
     postActivate: function(ctxt) {
         var renderContext = this.renderContext;
@@ -1113,22 +1097,6 @@ promptTypes.datetime = promptTypes.input_type.extend({
         } else {
             renderContext.value = that.$('input').val();
         }
-        that.setValue($.extend({}, ctxt, {
-            success: function() {
-                renderContext.invalid = !that.validateValue();
-                if ( rerender ) {
-                    that.render();
-                }
-                ctxt.success();
-            },
-            failure: function(m) {
-                renderContext.invalid = true;
-                if ( rerender ) {
-                    that.render();
-                }
-                ctxt.failure(m);
-            }
-        }), value);
     },
     
     afterRender: function() {
@@ -1151,6 +1119,23 @@ promptTypes.datetime = promptTypes.input_type.extend({
         }
     },
     beforeMove: function(ctxt) {
+		var that = this;
+		that.setValue($.extend({}, ctxt, {
+            success: function() {
+                renderContext.invalid = !that.validateValue();
+                if ( rerender ) {
+                    that.render();
+                }
+                ctxt.success();
+            },
+            failure: function(m) {
+                renderContext.invalid = true;
+                if ( rerender ) {
+                    that.render();
+                }
+                ctxt.failure(m);
+            }
+        }), value);
         // the spinner will have already saved the value
         ctxt.success();
     }
@@ -1190,22 +1175,6 @@ promptTypes.time = promptTypes.datetime.extend({
         } else {
             renderContext.value = that.$('input').val();
         }
-        that.setValue($.extend({}, ctxt, {
-            success: function() {
-                renderContext.invalid = !that.validateValue();
-                if ( rerender ) {
-                    that.render();
-                }
-                ctxt.success();
-            },
-            failure: function(m) {
-                renderContext.invalid = true;
-                if ( rerender ) {
-                    that.render();
-                }
-                ctxt.failure(m);
-            }
-        }), value);
     },
     //TODO: This will have problems with image labels.
     render: function() {
@@ -1224,6 +1193,23 @@ promptTypes.time = promptTypes.datetime.extend({
         return this;
     },
     beforeMove: function(ctxt) {
+		var that = this;
+		that.setValue($.extend({}, ctxt, {
+            success: function() {
+                renderContext.invalid = !that.validateValue();
+                if ( rerender ) {
+                    that.render();
+                }
+                ctxt.success();
+            },
+            failure: function(m) {
+                renderContext.invalid = true;
+                if ( rerender ) {
+                    that.render();
+                }
+                ctxt.failure(m);
+            }
+        }), value);
         // the spinner will have already saved the value
         ctxt.success();
     }
@@ -1690,7 +1676,24 @@ promptTypes.acknowledge = promptTypes.select.extend({
     modification: function(evt) {
         var ctxt = controller.newContext(evt);
         ctxt.append('acknowledge.modification', this.promptIdx);
+    },
+    postActivate: function(ctxt) {
         var that = this;
+        var acknowledged;
+        try{
+            acknowledged = JSON.parse(that.getValue());
+        } catch(e) {
+            acknowledged = false;
+        }
+        that.renderContext.choices = [{
+            "name": "acknowledge",
+            "label": that.acknLabel,
+            "checked": acknowledged
+        }];
+        ctxt.success(ctxt);
+    },
+	beforeMove: function(ctxt) {
+		var that = this;
         var acknowledged = this.$('#acknowledge').is(':checked');
         this.setValue($.extend({}, ctxt, {
             success: function() {
@@ -1707,22 +1710,7 @@ promptTypes.acknowledge = promptTypes.select.extend({
                 }
             }
         }), acknowledged);
-    },
-    postActivate: function(ctxt) {
-        var that = this;
-        var acknowledged;
-        try{
-            acknowledged = JSON.parse(that.getValue());
-        } catch(e) {
-            acknowledged = false;
-        }
-        that.renderContext.choices = [{
-            "name": "acknowledge",
-            "label": that.acknLabel,
-            "checked": acknowledged
-        }];
-        ctxt.success(ctxt);
-    }
+	}
 });
 // Do not allow survey to proceed, either moving backward or forward...
 promptTypes.stop_survey = promptTypes.base.extend({

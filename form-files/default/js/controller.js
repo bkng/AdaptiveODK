@@ -394,6 +394,28 @@ window.controller = {
         alert("Unable to find label: " + name);
         return null;
     },
+	setPromptWithSave: function(ctxt, prompt, passedInOptions){
+        var that = this;
+        ctxt.append('controller:setPromptWithSave');
+        that.beforeMove($.extend({}, ctxt,{
+            success: function() {
+                ctxt.append("setPromptWithSave.beforeMove.success", "px: " +  that.currentPromptIdx);
+                that.setPrompt(ctxt, prompt, passedInOptions);                
+            },
+            failure: function(m) {
+                ctxt.append("setPromptWithSave.beforeMove.failure", "px: " +  that.currentPromptIdx);
+                // should stay on this screen...
+                if ( that.screenManager != null ) {
+                    that.screenManager.unexpectedError($.extend({},ctxt,{
+                        success:function() {
+                            ctxt.failure(m); 
+                        }}), "beforeMove");
+                } else {
+                    ctxt.failure(m);
+                }
+            }
+        }));
+    },
     setPrompt: function(ctxt, prompt, passedInOptions){
         var that = this;
         var options;

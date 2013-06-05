@@ -276,7 +276,7 @@ return Backbone.View.extend({
         evt.stopImmediatePropagation();
 		
 		var prmpt = that.controller.getPromptByName( "menu" );
-        that.controller.setPrompt($.extend({},ctxt,{
+        that.controller.setPromptWithSave($.extend({},ctxt,{
 						success:function(){
 							ctxt.failure({message: "Returning to start of form."});
 						}}), prmpt, null);
@@ -294,7 +294,7 @@ return Backbone.View.extend({
         evt.stopImmediatePropagation();
 		
 		var prmpt = that.controller.getPromptByName( "submenu" );
-        that.controller.setPrompt($.extend({},ctxt,{
+        that.controller.setPromptWithSave($.extend({},ctxt,{
 						success:function(){
 							ctxt.failure({message: "Returning to start of form."});
 						}}), prmpt, null);
