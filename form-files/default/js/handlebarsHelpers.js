@@ -97,8 +97,9 @@ Handlebars.registerHelper('promptLink', function(value, options) {
 
 Handlebars.registerHelper('qrcode', function(data, size) {
     //If the data is a function (i.e. a calculate) evaluate it.
-    data = $.isFunction(data) ? data() : data;
-    data = JSON.stringify(data);
+		//EDIT: for security reasons we are going to disable this. Possible future work?
+    //data = $.isFunction(data) ? data() : data;
+    //data = JSON.stringify(data);
     
     var defaultSize = (1 + Math.floor(data.length / 40)) * 96;
     //If the size is not numeric, it probably was not specified,
@@ -113,6 +114,9 @@ Handlebars.registerHelper('qrcode', function(data, size) {
     //we're ready to populate it.
     var uid = Math.random().toString().slice(2, 10);
     
+		//make the qrcode fill the entire screen
+		size = Math.min(window.innerHeight, window.innerWidth) - 40;	
+
     //Load the qrcode lib asynchronously and populate the qrcode container 
     //when it loads.
     window.setTimeout(function(){
