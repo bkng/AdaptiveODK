@@ -517,6 +517,12 @@
           "param": "follow_up"
         }
       ]
+    },
+    {
+      "type": "generate_qr",
+      "name": "generate_qr_code",
+      "section": "Finish Survey",
+      "_rowNum": 25
     }
   ],
   "calculates": [

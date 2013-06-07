@@ -423,7 +423,6 @@ promptTypes.instances = promptTypes.base.extend({
             return dbstring;
         }
     },
-    //TODO experimental code -----------------------------------
      extractDataValue: function(jsonObject) {
         return jsonObject.result.SCAN_RESULT;
     },
