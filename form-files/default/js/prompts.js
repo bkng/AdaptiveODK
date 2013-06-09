@@ -535,10 +535,10 @@ promptTypes.instances = promptTypes.base.extend({
     },
     loadInstanceFromBarcode: function(ctxt,newData){
         try{
-          ctxt.append("prompts." + this.type + ".scanInstance", "px: " + this.promptIdx);
+          ctxt.append("prompts." + this.type + ".loadInstanceFromBarcode", "px: " + this.promptIdx);
           var savedVals = this.databaseIO.deserializeDatabase(newData);
           var instanceId = savedVals.instanceId;
-          //TODO chain the contexts together
+					var that = this;
           database.initializeInstance($.extend({},ctxt,{
             success : function(){
               //TODO what todo with tableId???
@@ -553,7 +553,11 @@ promptTypes.instances = promptTypes.base.extend({
               database.putInstanceDataKeyValueMap($.extend({},ctxt,{ 
                 success : function(){
                   console.log(kvMap);
-                  opendatakit.openNewInstanceId(ctxt, instanceId);
+                  opendatakit.openNewInstanceId($.extend({},ctxt,{
+										success: function(){
+											//that.screenManager.gotoMenuScreen(null);
+										}
+									}),instanceId);
                 }
               }), instanceId, kvMap);
             }

@@ -450,7 +450,7 @@ window.controller = {
             success: function() {
                 ctxt.success();
                 // and flush any pending doAction callback
-                landing.setController(that);
+                window.landing.setController(that);
             }}), prompt, options);
         // the prompt should never be changed at this point!!!
         if ( this.currentPromptIdx != prompt.promptIdx ) {
