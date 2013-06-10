@@ -14,20 +14,22 @@
           "type": "text",
           "name": "patient_name",
           "label": "What is the child's name?",
-          "required": true,
           "_rowNum": 4
         },
         {
-          "type": "text",
+          "type": "integer",
           "name": "patient_age",
           "label": "How old is the child? (months)",
-          "required": true,
+          "constraint": "data('patient_age') >= 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 5
         },
         {
-          "type": "text",
+          "type": "integer",
           "name": "patient_weight",
           "label": "How much does the child weigh? (kg)",
+          "constraint": "data('patient_weight') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 6
         },
         {
@@ -60,7 +62,6 @@
           "name": "drink",
           "label": "Is the child able to drink or breastfeed?",
           "appearance": "inline",
-          "required": true,
           "_rowNum": 12,
           "param": "yesno"
         },
@@ -69,7 +70,6 @@
           "name": "vomit",
           "label": "Does the child vomit everything?",
           "appearance": "inline",
-          "required": true,
           "_rowNum": 13,
           "param": "yesno"
         },
@@ -78,7 +78,6 @@
           "name": "convulsions",
           "label": "Has the child had convulsions?",
           "appearance": "inline",
-          "required": true,
           "_rowNum": 14,
           "param": "yesno"
         }
@@ -94,7 +93,6 @@
           "name": "cough",
           "label": "Does the child have a cough or have difficulty breathing?",
           "appearance": "inline",
-          "required": true,
           "_rowNum": 17,
           "param": "yesno"
         },
@@ -103,7 +101,6 @@
           "name": "diarrhea",
           "label": "Does the child have diarrhea?",
           "appearance": "inline",
-          "required": true,
           "_rowNum": 18,
           "param": "yesno"
         },
@@ -112,7 +109,6 @@
           "name": "measles",
           "label": "Has the child had measles in the last three months?",
           "appearance": "inline",
-          "required": true,
           "_rowNum": 19,
           "param": "yesno"
         },
@@ -121,7 +117,6 @@
           "name": "fever",
           "label": "Does the child have a fever?",
           "appearance": "inline",
-          "required": true,
           "_rowNum": 20,
           "param": "yesno"
         }
@@ -153,12 +148,16 @@
           "name": "cough_days",
           "label": "How long has the child had a cough? (days)",
           "appearance": "inline",
+          "constraint": "data('cough_days') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 26
         },
         {
           "type": "integer",
           "name": "breath_rate",
           "label": "How many breaths does the child take in one minute?",
+          "constraint": "data('breath_rate') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 27
         },
         {
@@ -197,6 +196,8 @@
           "name": "diarrhea_days",
           "label": "How long has the child had diarrhea? (days)",
           "appearance": "inline",
+          "constraint": "data('diarrhea_days') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 34
         },
         {
@@ -291,6 +292,8 @@
           "name": "fever_days",
           "label": "How long has the child had a fever? (days)",
           "appearance": "inline",
+          "constraint": "data('fever_days') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 48
         },
         {
@@ -1470,7 +1473,7 @@
     },
     {
       "setting": "form_version",
-      "value": 0.6,
+      "value": 0.9,
       "_rowNum": 4
     },
     {
@@ -1494,10 +1497,10 @@
       "type": "string"
     },
     "patient_age": {
-      "type": "string"
+      "type": "integer"
     },
     "patient_weight": {
-      "type": "string"
+      "type": "integer"
     },
     "initial_visit": {
       "type": "string"
