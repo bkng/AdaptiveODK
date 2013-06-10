@@ -400,7 +400,17 @@ window.controller = {
         that.beforeMove($.extend({}, ctxt,{
             success: function() {
                 ctxt.append("setPromptWithSave.beforeMove.success", "px: " +  that.currentPromptIdx);
-                that.setPrompt(ctxt, prompt, passedInOptions);                
+				that.validate( $.extend({}, ctxt, {
+                    success: function() {
+						ctxt.append("gotoNextScreen.validate.success", "px: " +  that.currentPromptIdx);
+						that.setPrompt(ctxt, prompt, passedInOptions);
+					},
+					failure: function(m) {
+                        ctxt.append("gotoNextScreen.validate.failure", "px: " +  that.currentPromptIdx);
+                        that.screenManager.showScreenPopup(m); 
+                        ctxt.failure(m);
+                    }
+				}));
             },
             failure: function(m) {
                 ctxt.append("setPromptWithSave.beforeMove.failure", "px: " +  that.currentPromptIdx);
