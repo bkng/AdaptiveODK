@@ -2,7 +2,7 @@
   "survey": [
     {
       "type": "goto",
-      "condition": "get_patient_name != null",
+      "condition": "data('patient_name') != null",
       "_rowNum": 2,
       "param": "menu"
     },
