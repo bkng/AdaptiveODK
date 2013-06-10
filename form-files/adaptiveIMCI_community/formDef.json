@@ -18,16 +18,20 @@
           "_rowNum": 4
         },
         {
-          "type": "text",
+          "type": "integer",
           "name": "patient_age",
           "label": "How old is the child? (months)",
           "required": true,
+          "constraint": "data('patient_age') >= 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 5
         },
         {
-          "type": "text",
+          "type": "integer",
           "name": "patient_weight",
           "label": "How much does the child weigh? (kg)",
+          "constraint": "data('patient_weight') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 6
         },
         {
@@ -153,12 +157,16 @@
           "name": "cough_days",
           "label": "How long has the child had a cough? (days)",
           "appearance": "inline",
+          "constraint": "data('cough_days') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 26
         },
         {
           "type": "integer",
           "name": "breath_rate",
           "label": "How many breaths does the child take in one minute?",
+          "constraint": "data('breath_rate') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 27
         },
         {
@@ -197,6 +205,8 @@
           "name": "diarrhea_days",
           "label": "How long has the child had diarrhea? (days)",
           "appearance": "inline",
+          "constraint": "data('diarrhea_days') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 34
         },
         {
@@ -291,6 +301,8 @@
           "name": "fever_days",
           "label": "How long has the child had a fever? (days)",
           "appearance": "inline",
+          "constraint": "data('fever_days') > 0",
+          "constraint_message": "Value must be positive",
           "_rowNum": 48
         },
         {
@@ -762,7 +774,7 @@
     },
     {
       "name": "danger_class_general",
-      "calculation": "calculates.general_danger_level() == \"Severe\" ? \"danger\" : \"good\"",
+      "calculation": "calculates.general_danger_level() == \"Present\" ? \"danger\" : \"good\"",
       "_rowNum": 60
     },
     {
@@ -1470,7 +1482,7 @@
     },
     {
       "setting": "form_version",
-      "value": 0.7,
+      "value": 0.9,
       "_rowNum": 4
     },
     {
@@ -1494,10 +1506,10 @@
       "type": "string"
     },
     "patient_age": {
-      "type": "string"
+      "type": "integer"
     },
     "patient_weight": {
-      "type": "string"
+      "type": "integer"
     },
     "initial_visit": {
       "type": "string"
