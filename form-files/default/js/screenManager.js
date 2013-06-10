@@ -30,8 +30,9 @@ return Backbone.View.extend({
         "click .language": "setLanguage",
         "click .ignore-changes-and-exit": "ignoreChanges",
         "click .save-incomplete-and-exit": "saveChanges",
-        "swipeleft .swipeForwardEnabled": "gotoNextScreen",
-        "swiperight .swipeBackEnabled": "gotoPreviousScreen",
+		/* Swiping has been disabled to avoid accidental navigation */
+        // "swipeleft .swipeForwardEnabled": "gotoNextScreen",
+        // "swiperight .swipeBackEnabled": "gotoPreviousScreen",
         "pagechange": "handlePagechange",
         "dragstart img": "disableImageDrag",
         "click #ok-btn": "closeScreenPopup"
