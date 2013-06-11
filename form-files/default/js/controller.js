@@ -394,19 +394,28 @@ window.controller = {
         alert("Unable to find label: " + name);
         return null;
     },
+	
+	/**
+	* Save all data on the current prompt and jump to a specified prompt.
+	* This method supports non-linear traversal of the form.
+	*/
 	setPromptWithSave: function(ctxt, prompt, passedInOptions){
         var that = this;
         ctxt.append('controller:setPromptWithSave');
+		// persist responses to DB
         that.beforeMove($.extend({}, ctxt,{
             success: function() {
                 ctxt.append("setPromptWithSave.beforeMove.success", "px: " +  that.currentPromptIdx);
+				// validate any constraints
 				that.validate( $.extend({}, ctxt, {
                     success: function() {
 						ctxt.append("gotoNextScreen.validate.success", "px: " +  that.currentPromptIdx);
+						// advance to target prmpt
 						that.setPrompt(ctxt, prompt, passedInOptions);
 					},
 					failure: function(m) {
                         ctxt.append("gotoNextScreen.validate.failure", "px: " +  that.currentPromptIdx);
+						// show validation error
                         that.screenManager.showScreenPopup(m); 
                         ctxt.failure(m);
                     }

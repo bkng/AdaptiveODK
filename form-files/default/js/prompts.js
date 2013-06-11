@@ -856,7 +856,7 @@ promptTypes.select = promptTypes.select_multiple = promptTypes.base.extend({
                 }
 
             that.renderContext.choices = _.map(that.form.choices[that.param], _.clone);
-                 //now loop through every field in the object and apply the processValue function
+                //now loop through every field in the object and apply the processValue function
                 //alert(processValue("{{calculates.get_patient_name()}}"));
                 for(var key in that.renderContext.choices){
                   for(var field in that.renderContext.choices[key]){

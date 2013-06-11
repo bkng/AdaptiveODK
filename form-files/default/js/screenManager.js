@@ -266,6 +266,10 @@ return Backbone.View.extend({
     openOptions: function(evt) {
         $( "#optionsPopup" ).popup( "open" );
     },
+	
+	/**
+	* Go to the prompt with the name "menu"
+	*/
 	gotoMenuScreen: function(evt) {
         this.currentPageEl.css('opacity', '.5').fadeTo("fast", 1.0);
 		
@@ -283,7 +287,12 @@ return Backbone.View.extend({
 						}}), prmpt, null);
         return false;
     },
-	// TODO: Refactor gotoSubmenuScreen and gotoMenuScreen
+	
+	/**
+	* Go to the prompt with the name "submenu"
+	*
+	* TODO: Refactor gotoSubmenuScreen and gotoMenuScreen
+	*/
 	gotoSubmenuScreen: function(evt) {
         this.currentPageEl.css('opacity', '.5').fadeTo("fast", 1.0);
 		

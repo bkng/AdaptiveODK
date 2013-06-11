@@ -1,6 +1,7 @@
 <div class="odk-screen">
     {{#if showHeader}}
-        <div class="odk-header" data-role="header" data-theme="c" data-position="fixed">
+		<!-- navigation bar: contains buttons to traverse the form -->
+        <div class="odk-header" data-role="header" data-theme="c" data-position="fixed">			
             <div class="headerOptBtns">
 				<a class="odk-options-btn" data-role="button"
 				data-icon="gear" data-iconpos="notext" data-inline="true">survey</a>
@@ -24,6 +25,7 @@
         </div>
     {{/if}}
 	{{#if showSubHeader}}
+		<!-- information bar: contains section info and form name -->
         <div class="odk-subheader" data-role="content" data-theme="c" data-position="float">
             <div class="subHeaderTxt">
 				<a class="odk-section-txt">
